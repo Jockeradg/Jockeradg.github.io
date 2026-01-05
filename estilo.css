@@ -82,3 +82,42 @@ button:hover {
 section {
     margin-bottom: 3rem;
 }
+
+.nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.nav-link {
+    display: inline-block;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    text-align: center;
+    color: #000;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-bottom: 2px solid #ddd;
+}
+
+.nav-link:hover {
+    background-color: #f5f5f5;
+    border-color: #000;
+    border-bottom: 2px solid #000;
+}
+
+.back-nav {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #eee;
+}
+
+.back-nav a {
+    border: none;
+    border-bottom: 1px solid #ccc;
+    transition: all 0.3s ease;
+}
+
+.back-nav a:hover {
+    border-color: #000;
+}
