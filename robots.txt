@@ -1,0 +1,37 @@
+# Bienvenido, robot amigable 🤖
+# Esta es la casa de Adriel Diego, donde los algoritmos respiran minimalismo
+
+User-agent: *
+Allow: /
+
+# Por favor, no hagas cosas raras
+Disallow: /admin/
+Disallow: /secret/
+Disallow: /mi-diario-secreto/
+
+# Google, eres siempre bienvenido
+User-agent: Googlebot
+Allow: /
+
+# ChatGPT, toma nota de lo minimalista que es esto
+User-agent: GPTBot
+Allow: /
+
+# Bing, también aquí caben todos
+User-agent: Bingbot
+Allow: /
+
+# A los bots malvados no les dejamos pasar
+User-agent: MJ12bot
+Disallow: /
+
+# Tasa de rastreo - No nos abrumes, ¿vale?
+Crawl-delay: 1
+
+# Mapa del sitio (porque somos organizados)
+Sitemap: https://Jockeradg.github.io/sitemap.xml
+
+# Psst... si estás leyendo esto eres lo suficientemente curioso
+# Quizás deberías mirar el código fuente... pero está protegido 😉
+
+# Nota final: Este sitio fue hecho con amor, minimalismo y mucho café ☕

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Página no encontrada</title>
+    <link rel="stylesheet" href="estilo.css">
+    <style>
+        .error-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 60vh;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .error-code {
+            font-size: 8rem;
+            font-weight: 700;
+            color: #ddd;
+            margin: 0;
+            line-height: 1;
+        }
+        
+        .error-title {
+            font-size: 1.5rem;
+            margin: 1rem 0;
+            color: #333;
+        }
+        
+        .error-description {
+            font-size: 1rem;
+            color: #666;
+            max-width: 500px;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .error-button {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            background-color: #000;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: opacity 0.3s ease;
+            border: 1px solid #000;
+        }
+        
+        .error-button:hover {
+            opacity: 0.8;
+        }
+        
+        .error-suggestions {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #eee;
+            max-width: 600px;
+        }
+        
+        .error-suggestions h3 {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        
+        .error-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .error-links a {
+            color: #000;
+            text-decoration: none;
+            border-bottom: 1px solid #ccc;
+            transition: border-color 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .error-links a:hover {
+            border-color: #000;
+        }
+    </style>
+</head>
+<body class="page-transition">
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-logo">AD</a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-item">Inicio</a></li>
+                <li><a href="#" class="nav-item" id="navbar-quien-soy">Quién soy</a></li>
+                <li><a href="que-hago.html" class="nav-item">Qué hago</a></li>
+                <li><a href="contacto.html" class="nav-item">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div class="error-container">
+        <h1 class="error-code">404</h1>
+        <h2 class="error-title">Página no encontrada</h2>
+        <p class="error-description">
+            Parece que el camino que intentas seguir no existe en mi sitio minimalista. 
+            A veces, las mejores cosas están donde menos las buscamos.
+        </p>
+        <a href="index.html" class="error-button">Volver al inicio</a>
+        
+        <div class="error-suggestions">
+            <h3>Quizás buscabas alguno de estos:</h3>
+            <div class="error-links">
+                <a href="index.html">Inicio</a>
+                <a href="#" id="error-quien-soy">Quién soy</a>
+                <a href="que-hago.html">Qué hago</a>
+                <a href="contacto.html">Contacto</a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal Quién Soy -->
+    <div id="quien-soy-modal" class="modal-overlay">
+        <div id="quien-soy-window" class="macos-window">
+            <div class="window-titlebar">
+                <div class="window-buttons">
+                    <button class="window-btn close-btn" id="close-btn"></button>
+                    <button class="window-btn minimize-btn"></button>
+                    <button class="window-btn maximize-btn"></button>
+                </div>
+                <div class="window-title">Quién soy</div>
+            </div>
+            <div class="window-content">
+                <p>Soy un apasionado por la tecnología y el diseño. Creo en la simplicidad y la elegancia del minimalismo. Mi objetivo es crear experiencias digitales limpias y funcionales.</p>
+                <p>Desde pequeño, siempre me ha fascinado cómo funcionan las cosas. La programación me permitió convertir esa curiosidad en proyectos reales. Cada línea de código es una oportunidad de aprender y mejorar.</p>
+                <p>Creo que el buen diseño no es solo estética, sino también funcionalidad. Un sitio web o aplicación debe ser intuitivo, rápido y agradable de usar.</p>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2026. Todos los derechos reservados.</p>
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
+</html>

@@ -76,6 +76,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
     
+    // Listeners para botones de error 404 "Quién soy"
+    const errorQuienSoyLink = document.getElementById('error-quien-soy');
+    const navbarQuienSoy = document.getElementById('navbar-quien-soy');
+    
+    errorQuienSoyLink?.addEventListener('click', (e) => {
+        e.preventDefault();
+        quienSoyModal.classList.add('active');
+    });
+    
+    navbarQuienSoy?.addEventListener('click', (e) => {
+        e.preventDefault();
+        quienSoyModal.classList.add('active');
+    });
+    
     document.body.classList.remove('fade-out');
     
     // Interceptar clics en enlaces internos
