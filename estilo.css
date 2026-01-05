@@ -219,6 +219,7 @@ main {
     border-bottom: 1px solid #e0e0e0;
     cursor: grab;
     user-select: none;
+    -webkit-user-select: none;
 }
 
 .window-titlebar:active {
@@ -239,6 +240,16 @@ main {
     cursor: default;
     transition: all 0.2s ease;
     box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.5);
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-appearance: none;
+    appearance: none;
+    padding: 0;
+    outline: none;
+}
+
+.window-btn:focus {
+    outline: none;
 }
 
 .close-btn {
@@ -250,16 +261,22 @@ main {
     background: linear-gradient(135deg, #ff6b63 0%, #ff4838 100%);
 }
 
+.close-btn:active {
+    transform: scale(0.95);
+}
+
 .minimize-btn {
     background: linear-gradient(135deg, #ffbd2e 0%, #ffb81c 100%);
     opacity: 0.4;
     cursor: not-allowed;
+    pointer-events: none;
 }
 
 .maximize-btn {
     background: linear-gradient(135deg, #27c93f 0%, #2ed336 100%);
     opacity: 0.4;
     cursor: not-allowed;
+    pointer-events: none;
 }
 
 .window-title {
