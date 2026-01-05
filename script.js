@@ -1,6 +1,21 @@
 // Registro del Service Worker para caching
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('sw.js').catch(() => {});
+    navigator.serviceWorker.register('sw.js').then((registration) => {
+        // Verificar actualizaciones cada vez que se carga la página
+        registration.update();
+        
+        // Cuando haya una actualización disponible
+        registration.addEventListener('updatefound', () => {
+            const newWorker = registration.installing;
+            newWorker.addEventListener('statechange', () => {
+                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                    // Nueva versión disponible, recargar la página
+                    console.log('Nueva versión disponible. Actualizando...');
+                    window.location.reload();
+                }
+            });
+        });
+    }).catch(() => {});
 }
 
 // Modal Quién Soy - Funcionalidad
