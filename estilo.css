@@ -9,12 +9,37 @@ body {
     line-height: 1.6;
     color: #333;
     background-color: #fff;
-    opacity: 1;
-    transition: opacity 0.5s ease-in-out;
+    overflow-x: hidden;
+}
+
+body.page-transition {
+    animation: slideDown 0.5s ease-in-out;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 body.fade-out {
-    opacity: 0;
+    animation: slideUp 0.5s ease-in-out forwards;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
 }
 
 /* Navbar */
@@ -84,6 +109,30 @@ header, footer {
     font-size: 2.5rem;
 }
 
+.banner-nav {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem 1rem;
+    border-bottom: 1px solid #eee;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.banner-link {
+    color: #000;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    border-bottom: 2px solid transparent;
+    padding-bottom: 0.25rem;
+}
+
+.banner-link:hover {
+    border-bottom: 2px solid #000;
+    opacity: 0.7;
+}
+
 .subtitle {
     margin: 0.5rem 0 0;
     color: #666;
@@ -140,43 +189,4 @@ button:hover {
 
 section {
     margin-bottom: 3rem;
-}
-
-.nav-links {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.nav-link {
-    display: inline-block;
-    padding: 1rem;
-    border: 1px solid #ddd;
-    text-align: center;
-    color: #000;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    border-bottom: 2px solid #ddd;
-}
-
-.nav-link:hover {
-    background-color: #f5f5f5;
-    border-color: #000;
-    border-bottom: 2px solid #000;
-}
-
-.back-nav {
-    margin-top: 2rem;
-    padding-top: 2rem;
-    border-top: 1px solid #eee;
-}
-
-.back-nav a {
-    border: none;
-    border-bottom: 1px solid #ccc;
-    transition: all 0.3s ease;
-}
-
-.back-nav a:hover {
-    border-color: #000;
 }
