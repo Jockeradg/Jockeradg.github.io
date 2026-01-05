@@ -8,15 +8,38 @@
 </head>
 <body>
     <header>
-        <h1>¡Soy yo!</h1>
+        <div class="banner">
+            <h1>¡Soy yo!</h1>
+            <p class="subtitle">Desarrollador | Creador | Soñador</p>
+        </div>
     </header>
     
     <main>
-        <p>Bienvenido a mi página web minimalista.</p>
+        <section id="quien-soy">
+            <h2>Quién soy</h2>
+            <p>Soy un apasionado por la tecnología y el diseño. Creo en la simplicidad y la elegancia del minimalismo. Mi objetivo es crear experiencias digitales limpias y funcionales.</p>
+        </section>
+        
+        <section id="que-hago">
+            <h2>Qué hago</h2>
+            <p>Desarrollo aplicaciones web modernas, diseño interfaces minimalistas y trabajo en proyectos que combinan tecnología con creatividad. Me encanta aprender nuevas herramientas y compartir conocimiento.</p>
+        </section>
+        
+        <section id="contacto">
+            <h2>Buzón de contacto</h2>
+            <form>
+                <input type="text" placeholder="Tu nombre" required>
+                <input type="email" placeholder="Tu correo" required>
+                <textarea placeholder="Tu mensaje" rows="5" required></textarea>
+                <button type="submit">Enviar</button>
+            </form>
+        </section>
     </main>
     
     <footer>
         <p>&copy; 2026. Todos los derechos reservados.</p>
     </footer>
+    
+    <script src="script.js"></script>
 </body>
 </html>
