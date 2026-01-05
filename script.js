@@ -66,15 +66,28 @@ document.addEventListener('DOMContentLoaded', () => {
         if (href === currentPage || (currentPage === '' && href === 'index.html')) {
             link.classList.add('active');
         }
+        
+        // Si es el enlace de "Quién soy", añadir listener para abrir modal
+        if (href === 'quien-soy.html') {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                quienSoyModal.classList.add('active');
+            });
+        }
     });
     
     document.body.classList.remove('fade-out');
     
     // Interceptar clics en enlaces internos
     document.querySelectorAll('a[href$=".html"]').forEach(link => {
+        const href = link.getAttribute('href');
+        
+        // No interceptar el enlace de "Quién soy" si está en navbar
+        if (href === 'quien-soy.html' && link.classList.contains('nav-item')) {
+            return;
+        }
+        
         link.addEventListener('click', (e) => {
-            const href = link.getAttribute('href');
-            
             // Excluir enlaces externos o con atributos especiales
             if (!href.startsWith('#') && !link.target) {
                 e.preventDefault();
