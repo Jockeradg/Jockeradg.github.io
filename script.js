@@ -51,8 +51,22 @@ document.addEventListener('mouseup', () => {
     isDragging = false;
 });
 
-// Transiciones suaves entre páginas
+// Registro del Service Worker para caching
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js').catch(() => {});
+}
+
+// Marcar el enlace activo en el navbar
 document.addEventListener('DOMContentLoaded', () => {
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    
+    document.querySelectorAll('.nav-item').forEach(link => {
+        const href = link.getAttribute('href');
+        if (href === currentPage || (currentPage === '' && href === 'index.html')) {
+            link.classList.add('active');
+        }
+    });
+    
     document.body.classList.remove('fade-out');
     
     // Interceptar clics en enlaces internos
