@@ -1,3 +1,31 @@
+// Registro del Service Worker para caching
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js').catch(() => {});
+}
+
+// Transiciones suaves entre páginas
+document.addEventListener('DOMContentLoaded', () => {
+    document.body.classList.remove('fade-out');
+    
+    // Interceptar clics en enlaces internos
+    document.querySelectorAll('a[href$=".html"]').forEach(link => {
+        link.addEventListener('click', (e) => {
+            const href = link.getAttribute('href');
+            
+            // Excluir enlaces externos o con atributos especiales
+            if (!href.startsWith('#') && !link.target) {
+                e.preventDefault();
+                
+                document.body.classList.add('fade-out');
+                
+                setTimeout(() => {
+                    window.location.href = href;
+                }, 500);
+            }
+        });
+    });
+});
+
 // Deshabilitar clic derecho
 document.addEventListener('contextmenu', (e) => e.preventDefault());
 
