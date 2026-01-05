@@ -3,6 +3,54 @@ if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('sw.js').catch(() => {});
 }
 
+// Modal Quién Soy - Funcionalidad
+const quienSoyLink = document.getElementById('quien-soy-link');
+const quienSoyModal = document.getElementById('quien-soy-modal');
+const closeBtn = document.getElementById('close-btn');
+const windowTitlebar = document.querySelector('.window-titlebar');
+const macosWindow = document.getElementById('quien-soy-window');
+
+let isDragging = false;
+let dragOffsetX = 0;
+let dragOffsetY = 0;
+
+// Abrir modal
+quienSoyLink?.addEventListener('click', (e) => {
+    e.preventDefault();
+    quienSoyModal.classList.add('active');
+});
+
+// Cerrar modal con botón rojo
+closeBtn?.addEventListener('click', () => {
+    quienSoyModal.classList.remove('active');
+});
+
+// Cerrar modal al hacer clic fuera
+quienSoyModal?.addEventListener('click', (e) => {
+    if (e.target === quienSoyModal) {
+        quienSoyModal.classList.remove('active');
+    }
+});
+
+// Arrastre de ventana
+windowTitlebar?.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    dragOffsetX = e.clientX - macosWindow.offsetLeft;
+    dragOffsetY = e.clientY - macosWindow.offsetTop;
+});
+
+document.addEventListener('mousemove', (e) => {
+    if (isDragging && macosWindow) {
+        macosWindow.style.position = 'fixed';
+        macosWindow.style.left = (e.clientX - dragOffsetX) + 'px';
+        macosWindow.style.top = (e.clientY - dragOffsetY) + 'px';
+    }
+});
+
+document.addEventListener('mouseup', () => {
+    isDragging = false;
+});
+
 // Transiciones suaves entre páginas
 document.addEventListener('DOMContentLoaded', () => {
     document.body.classList.remove('fade-out');
