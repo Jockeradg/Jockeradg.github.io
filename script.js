@@ -9,14 +9,20 @@ const quienSoyModal = document.getElementById('quien-soy-modal');
 const closeBtn = document.getElementById('close-btn');
 const windowTitlebar = document.querySelector('.window-titlebar');
 const macosWindow = document.getElementById('quien-soy-window');
+const banner = document.querySelector('.banner');
 
 let isDragging = false;
 let dragOffsetX = 0;
 let dragOffsetY = 0;
 
-// Abrir modal
+// Abrir modal al hacer clic en el enlace
 quienSoyLink?.addEventListener('click', (e) => {
     e.preventDefault();
+    quienSoyModal.classList.add('active');
+});
+
+// Abrir modal al hacer clic en el banner
+banner?.addEventListener('click', () => {
     quienSoyModal.classList.add('active');
 });
 
@@ -50,11 +56,6 @@ document.addEventListener('mousemove', (e) => {
 document.addEventListener('mouseup', () => {
     isDragging = false;
 });
-
-// Registro del Service Worker para caching
-if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('sw.js').catch(() => {});
-}
 
 // Marcar el enlace activo en el navbar
 document.addEventListener('DOMContentLoaded', () => {
