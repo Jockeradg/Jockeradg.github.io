@@ -757,4 +757,44 @@ footer p {
     }
 }
 
+/* ========================================
+   DETALLE DE PROYECTO
+   ======================================== */
+
+.project-hero {
+    width: 100%;
+    min-height: 40vh;
+    background-size: cover;
+    background-position: center;
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+    margin: 1rem 0 1.5rem 0;
+}
+
+.project-hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.05) 60%);
+    pointer-events: none;
+}
+
+.project-body {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1rem 2rem 1rem;
+}
+
+.project-detail-title {
+    font-size: 2rem;
+    margin: 0.5rem 0 0.5rem 0;
+}
+
+.project-detail-description {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    opacity: 0.9;
+}
+
 

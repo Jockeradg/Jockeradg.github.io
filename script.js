@@ -606,6 +606,11 @@ async function loadProjects() {
                 </div>
             `;
             
+            // Navegar a la página de detalle al hacer clic
+            projectCard.addEventListener('click', () => {
+                window.location.href = `projects/detalle.html?id=${encodeURIComponent(project.id)}`;
+            });
+            
             projectsContainer.appendChild(projectCard);
         });
     } catch (error) {
@@ -621,4 +626,58 @@ if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', loadProjects);
 } else {
     loadProjects();
+}
+
+/* ========================================
+   DETALLE DE PROYECTO - PÁGINA INDIVIDUAL
+   ======================================== */
+
+/**
+ * Carga el detalle de un proyecto usando el parámetro ?id=
+ * Rellena título, descripción e imagen de portada
+ */
+async function loadProjectDetail() {
+    const titleEl = document.getElementById('project-title');
+    const descEl = document.getElementById('project-description');
+    const heroEl = document.getElementById('project-hero');
+    
+    // Si no estamos en una página de detalle, salir
+    if (!titleEl || !descEl || !heroEl) return;
+    
+    const params = new URLSearchParams(window.location.search);
+    const projectId = params.get('id');
+    if (!projectId) {
+        titleEl.textContent = 'Proyecto no especificado';
+        descEl.textContent = 'No se ha proporcionado un identificador de proyecto.';
+        return;
+    }
+    
+    try {
+        const response = await fetch('../projects/projects.json?v=1.0.0');
+        if (!response.ok) throw new Error('No se pudo cargar el listado de proyectos');
+        const data = await response.json();
+        const project = (data.projects || []).find(p => p.id === projectId);
+        
+        if (!project || project.published === false) {
+            titleEl.textContent = 'Proyecto no encontrado';
+            descEl.textContent = 'El proyecto solicitado no existe o no está publicado.';
+            return;
+        }
+        
+        // Rellenar contenido
+        titleEl.textContent = project.title;
+        descEl.textContent = project.description;
+        heroEl.style.backgroundImage = `url('${project.image}')`;
+    } catch (err) {
+        titleEl.textContent = 'Error al cargar el proyecto';
+        descEl.textContent = 'Intenta recargar la página más tarde.';
+        console.error('Detalle de proyecto:', err);
+    }
+}
+
+// Ejecutar carga de detalle si aplica
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadProjectDetail);
+} else {
+    loadProjectDetail();
 }
