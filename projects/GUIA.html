@@ -1,0 +1,378 @@
+<!-- ==========================================
+     GUÍA VISUAL - SISTEMA DE PROYECTOS
+     ========================================== -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Proyectos - Guía</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+            padding: 2rem;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            color: #000;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #000;
+            padding-bottom: 0.5rem;
+        }
+        
+        h2 {
+            color: #000;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .section {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: #f9f9f9;
+            border-radius: 8px;
+            border-left: 4px solid #000;
+        }
+        
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 1rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            margin: 1rem 0;
+        }
+        
+        .file-structure {
+            background: #f0f0f0;
+            padding: 1rem;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            margin: 1rem 0;
+        }
+        
+        .folder {
+            color: #0066cc;
+            font-weight: 600;
+        }
+        
+        .file {
+            color: #333;
+            margin-left: 1.5rem;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        
+        table th {
+            background: #000;
+            color: white;
+            padding: 0.75rem;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        table td {
+            padding: 0.75rem;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+        
+        .example-json {
+            background: #f0f0f0;
+            border-left: 4px solid #0066cc;
+            padding: 1rem;
+            border-radius: 6px;
+            margin: 1rem 0;
+        }
+        
+        .checklist {
+            list-style: none;
+        }
+        
+        .checklist li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .checklist li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #27c93f;
+            font-weight: bold;
+        }
+        
+        .warning {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1rem;
+            border-radius: 6px;
+            margin: 1rem 0;
+        }
+        
+        .success {
+            background: #d4edda;
+            border-left: 4px solid #27c93f;
+            padding: 1rem;
+            border-radius: 6px;
+            margin: 1rem 0;
+        }
+        
+        a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 Sistema de Proyectos - Guía Completa</h1>
+        
+        <div class="section">
+            <h2>📁 Estructura de Carpetas</h2>
+            <div class="file-structure">
+                <div class="folder">Jockeradg.github.io/</div>
+                <div class="file"><span class="folder">projects/</span></div>
+                <div class="file" style="margin-left: 3rem;">📄 projects.json</div>
+                <div class="file" style="margin-left: 3rem;">📄 README.md</div>
+                <div class="file"><span class="folder">images/</span></div>
+                <div class="file" style="margin-left: 3rem;"><span class="folder">projects/</span></div>
+                <div class="file" style="margin-left: 4.5rem;">🖼️ proyecto-1.jpg</div>
+                <div class="file" style="margin-left: 4.5rem;">🖼️ proyecto-2.jpg</div>
+                <div class="file" style="margin-left: 4.5rem;">🖼️ proyecto-3.jpg</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🚀 Paso 1: Preparar Imágenes</h2>
+            <ul class="checklist">
+                <li>Coloca tus imágenes en <code>images/projects/</code></li>
+                <li>Tamaño recomendado: <strong>600px × 400px</strong></li>
+                <li>Ratio de aspecto: <strong>3:2</strong></li>
+                <li>Formato: JPG, PNG o WebP</li>
+                <li>Tamaño de archivo: Máx 200KB por imagen</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>✏️ Paso 2: Editar projects.json</h2>
+            <p>Abre <code>projects/projects.json</code> y agrega tus proyectos:</p>
+            
+            <div class="code-block">
+{
+  "projects": [
+    {
+      "id": "nombre-unico",
+      "title": "Título del Proyecto",
+      "description": "Descripción breve",
+      "image": "../images/projects/imagen.jpg"
+    }
+  ]
+}
+            </div>
+
+            <h3 style="margin-top: 1.5rem;">Ejemplo Completo:</h3>
+            <div class="example-json">
+                <code>
+                {<br>
+                &nbsp;&nbsp;"projects": [<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;{<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"id": "app-ecommerce",<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"title": "Tienda Online",<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"description": "Plataforma de e-commerce con React y Node.js",<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"image": "../images/projects/ecommerce.jpg"<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;},<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;{<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"id": "app-clima",<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"title": "App del Clima",<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"description": "Aplicación meteorológica con API en tiempo real",<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"image": "../images/projects/clima.jpg"<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                &nbsp;&nbsp;]<br>
+                }
+                </code>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📋 Campos Requeridos</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Campo</th>
+                        <th>Tipo</th>
+                        <th>Descripción</th>
+                        <th>Ejemplo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>id</strong></td>
+                        <td>String</td>
+                        <td>Identificador único (sin espacios, sin caracteres especiales)</td>
+                        <td><code>mi-proyecto-web</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>title</strong></td>
+                        <td>String</td>
+                        <td>Título mostrado en la tarjeta (máx 30 caracteres)</td>
+                        <td><code>Mi App Web</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>description</strong></td>
+                        <td>String</td>
+                        <td>Descripción breve (máx 60 caracteres)</td>
+                        <td><code>App moderna con React</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>image</strong></td>
+                        <td>String</td>
+                        <td>Ruta relativa a la imagen desde projects.json</td>
+                        <td><code>../images/projects/app.jpg</code></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>🎯 Cómo Funciona</h2>
+            <ol>
+                <li><strong>Al cargar que-hago.html</strong>, el JavaScript busca el contenedor de proyectos</li>
+                <li><strong>Se carga projects.json</strong> automáticamente</li>
+                <li><strong>Cada proyecto se renderiza</strong> como una tarjeta con imagen y texto</li>
+                <li><strong>Efecto hover</strong> automático: aumento de tamaño + brillo</li>
+                <li><strong>Grid responsive</strong> que se adapta a cualquier pantalla</li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <h2>✨ Efectos de Interacción</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Efecto</th>
+                        <th>Descripción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Escala</strong></td>
+                        <td>La tarjeta aumenta su tamaño (scale 1.08) al pasar el ratón</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Brillo</strong></td>
+                        <td>La imagen se aclara (brightness 0.85) en lugar de oscurecerse</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sombra</strong></td>
+                        <td>Se aumenta la sombra para efecto de elevación</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Transición</strong></td>
+                        <td>Todos los cambios son suaves (0.3s)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>📱 Responsive Design</h2>
+            <ul class="checklist">
+                <li><strong>Desktop:</strong> 3-4 proyectos por fila (280px mínimo cada uno)</li>
+                <li><strong>Tablet:</strong> 2-3 proyectos por fila (768px breakpoint)</li>
+                <li><strong>Móvil:</strong> 1 proyecto por fila (480px breakpoint)</li>
+            </ul>
+        </div>
+
+        <div class="success">
+            <strong>✓ Sistema Listo:</strong> Solo necesitas agregar imágenes a <code>images/projects/</code> y actualizar <code>projects.json</code>
+        </div>
+
+        <div class="warning">
+            <strong>⚠️ Importante:</strong> Verifica que las rutas de las imágenes en projects.json sean correctas. Usa rutas relativas desde el archivo JSON.
+        </div>
+
+        <div class="section">
+            <h2>🔧 Personalización Avanzada</h2>
+            <p>Si quieres cambiar los estilos, edita la sección <code>SECCIÓN DE PROYECTOS</code> en <code>estilo.css</code>:</p>
+            
+            <h3>Cambiar número de columnas:</h3>
+            <div class="code-block">
+.projects-grid {
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+}
+            </div>
+
+            <h3>Cambiar ratio de imágenes:</h3>
+            <div class="code-block">
+.project-card {
+    aspect-ratio: 16 / 9;  /* De 3/2 a 16/9 */
+}
+            </div>
+
+            <h3>Cambiar intensidad del efecto hover:</h3>
+            <div class="code-block">
+.project-card:hover {
+    transform: scale(1.15);  /* De 1.08 a 1.15 */
+}
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>💡 Tips y Mejores Prácticas</h2>
+            <ul class="checklist">
+                <li>Usa imágenes de calidad pero optimizadas</li>
+                <li>Mantén consistencia en el tamaño de imágenes</li>
+                <li>Títulos cortos y descriptivos (máx 30 caracteres)</li>
+                <li>Descripciones breves pero informativas</li>
+                <li>IDs únicos y descriptivos (ej: proyecto-2024-enero)</li>
+                <li>Ordena los proyectos del más reciente al más antiguo</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>🚀 Próximas Mejoras</h2>
+            <ul style="list-style: none;">
+                <li>☐ Agregar enlaces a proyectos individuales</li>
+                <li>☐ Implementar modal de detalles</li>
+                <li>☐ Agregar filtros por categoría</li>
+                <li>☐ Galerías de múltiples imágenes por proyecto</li>
+                <li>☐ Integración con GitHub API</li>
+            </ul>
+        </div>
+
+    </div>
+</body>
+</html>

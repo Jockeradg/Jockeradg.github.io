@@ -546,3 +546,61 @@ if (contactForm) {
         }
     });
 }
+/* ========================================
+   CARGA DE PROYECTOS - SECCIÓN QUÉ HAGO
+   ======================================== */
+
+/**
+ * Carga los proyectos desde projects.json y los renderiza en la página
+ * Solo se ejecuta si existe el contenedor de proyectos
+ */
+async function loadProjects() {
+    const projectsContainer = document.getElementById('projects-container');
+    
+    // Si no existe el contenedor, no hay proyectos en esta página
+    if (!projectsContainer) return;
+    
+    try {
+        // Cargar el archivo JSON de proyectos
+        const response = await fetch('projects/projects.json?v=1.0.0');
+        
+        if (!response.ok) {
+            console.error('Error al cargar proyectos:', response.statusText);
+            return;
+        }
+        
+        const data = await response.json();
+        const projects = data.projects;
+        
+        // Limpiar contenedor
+        projectsContainer.innerHTML = '';
+        
+        // Crear una tarjeta para cada proyecto
+        projects.forEach(project => {
+            const projectCard = document.createElement('div');
+            projectCard.className = 'project-card';
+            projectCard.style.setProperty('--bg-image', `url('${project.image}')`);
+            
+            projectCard.innerHTML = `
+                <div class="project-content">
+                    <h3 class="project-title">${project.title}</h3>
+                    <p class="project-description">${project.description}</p>
+                </div>
+            `;
+            
+            projectsContainer.appendChild(projectCard);
+        });
+    } catch (error) {
+        console.error('Error al cargar proyectos:', error);
+        projectsContainer.innerHTML = '<p style="grid-column: 1 / -1; text-align: center; color: #999;">Error al cargar proyectos</p>';
+    }
+}
+
+/**
+ * Ejecutar carga de proyectos cuando esté listo el DOM
+ */
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadProjects);
+} else {
+    loadProjects();
+}
