@@ -56,10 +56,14 @@ function shouldShowSnowflakes() {
 
 /**
  * Crea un contenedor de copos de nieve y los anima cayendo
+ * Persiste entre navegaciones usando sessionStorage
  */
 function initSnowflakes() {
     // Solo crear si es la temporada adecuada
     if (!shouldShowSnowflakes()) return;
+    
+    // Verificar si ya se inicializó en esta sesión
+    if (sessionStorage.getItem('snowflakes-initialized')) return;
     
     // Crear contenedor de copos si no existe
     if (document.getElementById('snowflakes-container')) return;
@@ -67,6 +71,9 @@ function initSnowflakes() {
     const snowContainer = document.createElement('div');
     snowContainer.id = 'snowflakes-container';
     document.body.appendChild(snowContainer);
+    
+    // Marcar como inicializado en esta sesión
+    sessionStorage.setItem('snowflakes-initialized', 'true');
     
     /**
      * Crea un copo de nieve individual
@@ -112,9 +119,54 @@ function initSnowflakes() {
 
 // Inicializar copos de nieve cuando cargue el DOM
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initSnowflakes);
+    document.addEventListener('DOMContentLoaded', () => {
+        initSnowflakes();
+        addChristmasHatToModal();
+    });
 } else {
     initSnowflakes();
+    addChristmasHatToModal();
+}
+
+/* ========================================
+   GORRO DE NAVIDAD - MODAL
+   ======================================== */
+
+/**
+ * Función para verificar si debe mostrar el gorro de Navidad
+ * Se activa el 1 de diciembre y se desactiva el 14 de enero
+ * @returns {boolean} true si debe mostrar gorro
+ */
+function shouldShowChristmasHat() {
+    const today = new Date();
+    const month = today.getMonth(); // 0-11
+    const day = today.getDate(); // 1-31
+    
+    // Mostrar desde 1 de diciembre hasta 14 de enero (inclusive)
+    const isDecember = month === 11 && day >= 1;
+    const isJanuary = month === 0 && day < 15;
+    
+    return isDecember || isJanuary;
+}
+
+/**
+ * Agrega un gorro de Navidad en la esquina superior izquierda del modal
+ */
+function addChristmasHatToModal() {
+    if (!shouldShowChristmasHat()) return;
+    
+    const macosWindow = document.getElementById('quien-soy-window');
+    if (!macosWindow) return;
+    
+    // Verificar si ya existe el gorro
+    if (document.getElementById('christmas-hat')) return;
+    
+    const hat = document.createElement('div');
+    hat.id = 'christmas-hat';
+    hat.className = 'christmas-hat';
+    hat.textContent = '🎅';
+    
+    macosWindow.appendChild(hat);
 }
 
 /* ========================================
