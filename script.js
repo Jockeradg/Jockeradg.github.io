@@ -197,41 +197,16 @@ document.addEventListener('DOMContentLoaded', () => {
         quienSoyModal.classList.add('active');
     });
     
-    // Remover la clase de fade-out cuando la página carga completamente
-    document.body.classList.remove('fade-out');
-    
     /* ========================================
-       NAVEGACIÓN DE PÁGINAS CON TRANSICIONES
+       NAVEGACIÓN DE PÁGINAS
        ======================================== */
     
     /**
-     * Intercepta clics en enlaces .html internos
-     * Añade animación de transición suave antes de cambiar de página
+     * Navegación nativa sin interceptación ni animaciones
+     * El navegador maneja el cambio de página de forma natural
      */
-    document.querySelectorAll('a[href$=".html"]').forEach(link => {
-        const href = link.getAttribute('href');
-        
-        // No interceptar el enlace "Quién soy" si está en el navbar
-        // (porque abre el modal, no navega)
-        if (href === 'quien-soy.html' && link.classList.contains('nav-item')) {
-            return;
-        }
-        
-        link.addEventListener('click', (e) => {
-            // Solo interceptar enlaces internos sin atributos especiales
-            if (!href.startsWith('#') && !link.target) {
-                e.preventDefault();
-                
-                // Añadir clase para iniciar animación de desvanecimiento
-                document.body.classList.add('fade-out');
-                
-                // Esperar 600ms (duración de la animación) antes de navegar
-                setTimeout(() => {
-                    window.location.href = href;
-                }, 600);
-            }
-        });
-    });
+    // Los enlaces .html navegan directamente
+    // Sin animaciones de transición
 });
 
 /* ========================================
