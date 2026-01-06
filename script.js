@@ -55,16 +55,26 @@ let dragOffsetY = 0;
 
 /**
  * Abre el modal al hacer clic en el enlace de "Quién soy"
+ * Calcula la posición del botón para animar desde ahí
  */
 quienSoyLink?.addEventListener('click', (e) => {
     e.preventDefault();
+    // Obtener posición del botón para animación de origen
+    const rect = e.target.getBoundingClientRect();
+    const originX = rect.left + rect.width / 2;
+    const originY = rect.top;
+    // Establecer transform-origin en la ventana modal
+    macosWindow.style.transformOrigin = `${originX}px ${originY}px`;
     quienSoyModal.classList.add('active');
 });
 
 /**
  * Abre el modal al hacer clic en el banner (imagen/área principal)
+ * Anima desde el centro del banner
  */
 banner?.addEventListener('click', () => {
+    // Animar desde el centro del viewport
+    macosWindow.style.transformOrigin = 'center center';
     quienSoyModal.classList.add('active');
 });
 
@@ -185,6 +195,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (href === 'quien-soy.html') {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
+                // Obtener posición del botón para animación de origen
+                const rect = e.target.getBoundingClientRect();
+                const originX = rect.left + rect.width / 2;
+                const originY = rect.top;
+                macosWindow.style.transformOrigin = `${originX}px ${originY}px`;
                 quienSoyModal.classList.add('active');
             });
         }
@@ -197,12 +212,20 @@ document.addEventListener('DOMContentLoaded', () => {
     // Abrir modal desde botón de "Quién soy" en error 404
     errorQuienSoyLink?.addEventListener('click', (e) => {
         e.preventDefault();
+        const rect = e.target.getBoundingClientRect();
+        const originX = rect.left + rect.width / 2;
+        const originY = rect.top;
+        macosWindow.style.transformOrigin = `${originX}px ${originY}px`;
         quienSoyModal.classList.add('active');
     });
     
     // Abrir modal desde enlace de navbar específico
     navbarQuienSoy?.addEventListener('click', (e) => {
         e.preventDefault();
+        const rect = e.target.getBoundingClientRect();
+        const originX = rect.left + rect.width / 2;
+        const originY = rect.top;
+        macosWindow.style.transformOrigin = `${originX}px ${originY}px`;
         quienSoyModal.classList.add('active');
     });
     
