@@ -1,27 +1,39 @@
+<!-- ==========================================
+     ADRIEL DIEGO - PÁGINA CONTACTO
+     Formulario de contacto
+     ========================================== -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <!-- Metadatos básicos -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contacto - Ponte en contacto conmigo">
     <title>Contacto - Adriel Diego</title>
+    
+    <!-- Estilos con versión -->
     <link rel="stylesheet" href="estilo.css?v=1.0.0">
+    
+    <!-- Cache control -->
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
 </head>
 <body class="page-transition">
+    <!-- NAVEGACIÓN PRINCIPAL -->
     <nav class="navbar">
         <div class="navbar-container">
             <a href="index.html" class="navbar-logo">AD</a>
             <ul class="nav-menu">
                 <li><a href="index.html" class="nav-item">Inicio</a></li>
-                <li><a href="quien-soy.html" class="nav-item">Quién soy</a></li>
+                <li><a href="quien-soy.html" id="quien-soy-link" class="nav-item">Quién soy</a></li>
                 <li><a href="que-hago.html" class="nav-item">Qué hago</a></li>
                 <li><a href="contacto.html" class="nav-item">Contacto</a></li>
             </ul>
         </div>
     </nav>
     
+    <!-- ENCABEZADO -->
     <header>
         <div class="banner">
             <h1>Contacto</h1>
@@ -29,7 +41,7 @@
         </div>
     </header>
     
-    <!-- Modal Quién Soy -->
+    <!-- MODAL "QUIÉN SOY" - Disponible en todas las páginas -->
     <div id="quien-soy-modal" class="modal-overlay">
         <div id="quien-soy-window" class="macos-window">
             <div class="window-titlebar">
@@ -48,10 +60,12 @@
         </div>
     </div>
     
+    <!-- CONTENIDO PRINCIPAL CON FORMULARIO DE CONTACTO -->
     <main>
         <section id="contacto">
             <p>¿Tienes una pregunta o propuesta? Me encantaría saber de ti. Rellena el formulario y te responderé lo antes posible.</p>
             
+            <!-- Formulario de contacto con validación HTML5 -->
             <form>
                 <input type="text" placeholder="Tu nombre" required>
                 <input type="email" placeholder="Tu correo" required>

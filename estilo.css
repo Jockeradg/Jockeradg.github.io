@@ -1,9 +1,15 @@
+/* ==========================================
+   ADRIEL DIEGO - ESTILOS MINIMALISTAS
+   ========================================== */
+
+/* RESET Y ESTILOS BASE */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Configuración general del documento */
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     line-height: 1.6;
@@ -12,37 +18,29 @@ body {
     overflow-x: hidden;
 }
 
+/* ANIMACIONES DE TRANSICIÓN */
 body.page-transition {
-    animation: slideDown 0.5s ease-in-out;
-}
-
-@keyframes slideDown {
-    from {
-        transform: translateY(-100%);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
+    animation: smoothSlideDown 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 body.fade-out {
-    animation: slideUp 0.5s ease-in-out forwards;
+    animation: smoothSlideUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 
-@keyframes slideUp {
-    from {
-        transform: translateY(0);
-        opacity: 1;
-    }
-    to {
-        transform: translateY(-100%);
-        opacity: 0;
-    }
+@keyframes smoothSlideDown {
+    from { transform: translateY(-100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
 }
 
-/* Navbar */
+@keyframes smoothSlideUp {
+    from { transform: translateY(0); opacity: 1; }
+    to { transform: translateY(-100%); opacity: 0; }
+}
+
+/* ========================================
+   NAVEGACIÓN
+   ======================================== */
+
 .navbar {
     position: sticky;
     top: 0;
@@ -100,6 +98,33 @@ body.fade-out {
     border-bottom: 2px solid #000;
 }
 
+/* Responsive - Tablet */
+@media (max-width: 768px) {
+    .navbar-container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .nav-menu {
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        justify-content: center;
+    }
+    
+    .nav-item { font-size: 0.85rem; }
+}
+
+/* Responsive - Móvil */
+@media (max-width: 480px) {
+    .nav-menu { gap: 1rem; }
+    .nav-item { font-size: 0.8rem; }
+    .navbar-logo { font-size: 1rem; }
+}
+
+/* ========================================
+   HEADER Y BANNER
+   ======================================== */
+
 header, footer {
     padding: 2rem 1rem;
     border-bottom: 1px solid #eee;
@@ -112,6 +137,88 @@ header, footer {
 .banner h1 {
     margin: 0;
     font-size: 2.5rem;
+}
+
+.subtitle {
+    margin: 0.5rem 0 0;
+    color: #666;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.welcome-section {
+    text-align: center;
+    padding: 2rem 1rem;
+    border-bottom: 1px solid #eee;
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    color: #666;
+}
+
+/* Responsive - Header */
+@media (max-width: 768px) {
+    .banner h1 { font-size: 2rem; }
+    .subtitle { font-size: 0.9rem; }
+}
+
+@media (max-width: 480px) {
+    header, footer { padding: 1.5rem 0.75rem; }
+    .banner h1 { font-size: 1.75rem; }
+    .welcome-section { padding: 1rem 0.75rem; font-size: 0.9rem; }
+    .subtitle { font-size: 0.8rem; }
+}
+
+/* ========================================
+   CONTENIDO PRINCIPAL
+   ======================================== */
+
+main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+h1, h2, h3 {
+    margin: 1.5rem 0 0.5rem;
+    font-weight: 600;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+section {
+    margin-bottom: 3rem;
+}
+
+/* Responsive - Contenido */
+@media (max-width: 768px) {
+    main { padding: 1.5rem 1rem; }
+    h2 { font-size: 1.3rem; }
+    p { font-size: 0.95rem; }
+}
+
+@media (max-width: 480px) {
+    main { padding: 1rem 0.75rem; }
+    h2 { font-size: 1.1rem; margin: 1rem 0 0.5rem; }
+    p { font-size: 0.9rem; line-height: 1.5; }
+    section { margin-bottom: 2rem; }
+}
+
+/* ========================================
+   ENLACES
+   ======================================== */
+
+a {
+    color: #000;
+    text-decoration: none;
+    border-bottom: 1px solid #ccc;
+    transition: border-color 0.2s;
+}
+
+a:hover {
+    border-color: #000;
 }
 
 .banner-nav {
@@ -138,50 +245,53 @@ header, footer {
     opacity: 0.7;
 }
 
-.subtitle {
-    margin: 0.5rem 0 0;
-    color: #666;
-    font-size: 1rem;
-    font-weight: 400;
+/* Responsive - Links */
+@media (max-width: 768px) {
+    .banner-nav { gap: 1.5rem; flex-wrap: wrap; }
+    .banner-link { font-size: 0.85rem; }
 }
 
-h1, h2, h3 {
-    margin: 1.5rem 0 0.5rem;
-    font-weight: 600;
+@media (max-width: 480px) {
+    .banner-nav { gap: 1rem; padding: 1.5rem 0.75rem; }
+    .banner-link { font-size: 0.75rem; }
 }
 
-p {
-    margin-bottom: 1rem;
+/* ========================================
+   FORMULARIOS
+   ======================================== */
+
+button, input, textarea {
+    font-family: inherit;
+    border: 1px solid #ddd;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    width: 100%;
 }
 
-a {
-    color: #000;
-    text-decoration: none;
-    border-bottom: 1px solid #ccc;
-    transition: border-color 0.2s;
+button {
+    background: #000;
+    color: #fff;
+    cursor: pointer;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    width: auto;
+    transition: opacity 0.2s ease;
 }
 
-a:hover {
-    border-color: #000;
+button:hover {
+    opacity: 0.9;
 }
 
-main {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 2rem 1rem;
+/* Responsive - Formularios */
+@media (max-width: 480px) {
+    input, textarea { padding: 0.75rem; font-size: 1rem; }
+    button { padding: 1rem 2rem; }
 }
 
-.welcome-section {
-    text-align: center;
-    padding: 2rem 1rem;
-    border-bottom: 1px solid #eee;
-    max-width: 800px;
-    margin: 0 auto;
-    font-size: 1.1rem;
-    color: #666;
-}
+/* ========================================
+   MODAL MACOS
+   ======================================== */
 
-/* Modal Quién Soy */
 .modal-overlay {
     display: none;
     position: fixed;
@@ -199,10 +309,13 @@ main {
     display: flex;
 }
 
+/* Ventana macOS - Estilo */
 .macos-window {
     background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.25);
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07),
+                0 10px 20px rgba(0, 0, 0, 0.1),
+                0 30px 60px rgba(0, 0, 0, 0.12);
     overflow: hidden;
     width: 480px;
     max-width: 90vw;
@@ -210,6 +323,7 @@ main {
     touch-action: none;
 }
 
+/* Barra de título de la ventana */
 .window-titlebar {
     background: linear-gradient(180deg, #f9f9f9 0%, #f1f1f1 100%);
     padding: 12px 16px;
@@ -226,6 +340,7 @@ main {
     cursor: grabbing;
 }
 
+/* Botones de control macOS */
 .window-buttons {
     display: flex;
     gap: 8px;
@@ -252,6 +367,7 @@ main {
     outline: none;
 }
 
+/* Botón rojo - Cerrar */
 .close-btn {
     background: linear-gradient(135deg, #ff5f56 0%, #ff3b30 100%);
     cursor: pointer;
@@ -265,18 +381,19 @@ main {
     transform: scale(0.95);
 }
 
-.minimize-btn {
-    background: linear-gradient(135deg, #ffbd2e 0%, #ffb81c 100%);
+/* Botones deshabilitados */
+.minimize-btn, .maximize-btn {
     opacity: 0.4;
     cursor: not-allowed;
     pointer-events: none;
 }
 
+.minimize-btn {
+    background: linear-gradient(135deg, #ffbd2e 0%, #ffb81c 100%);
+}
+
 .maximize-btn {
     background: linear-gradient(135deg, #27c93f 0%, #2ed336 100%);
-    opacity: 0.4;
-    cursor: not-allowed;
-    pointer-events: none;
 }
 
 .window-title {
@@ -287,6 +404,7 @@ main {
     font-weight: 500;
 }
 
+/* Contenido de la ventana */
 .window-content {
     padding: 20px 24px;
     max-height: 400px;
@@ -304,27 +422,32 @@ main {
     margin-bottom: 0;
 }
 
-button, input, textarea {
-    font-family: inherit;
-    border: 1px solid #ddd;
-    padding: 0.5rem;
-    margin-bottom: 0.5rem;
-    width: 100%;
+/* Responsive - Modal */
+@media (max-width: 768px) {
+    .macos-window { width: 95vw; }
+    .window-content { padding: 16px 20px; max-height: 60vh; font-size: 0.85rem; }
+    .window-title { font-size: 0.8rem; }
 }
 
-button {
-    background: #000;
-    color: #fff;
-    cursor: pointer;
-    padding: 0.75rem 1.5rem;
-    border: none;
-    width: auto;
+@media (max-width: 480px) {
+    .macos-window { width: 98vw; border-radius: 10px; }
+    .window-titlebar { padding: 10px 12px; }
+    .window-buttons { min-width: 50px; }
+    .window-btn { width: 11px; height: 11px; }
+    .window-content { padding: 14px 16px; max-height: 70vh; font-size: 0.8rem; }
+    .window-title { font-size: 0.75rem; }
 }
 
-button:hover {
-    opacity: 0.9;
+/* ========================================
+   PIE DE PÁGINA
+   ======================================== */
+
+footer {
+    text-align: center;
+    color: #666;
+    font-size: 0.9rem;
 }
 
-section {
-    margin-bottom: 3rem;
+footer p {
+    margin: 0;
 }

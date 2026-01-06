@@ -1,27 +1,43 @@
+<!-- ==========================================
+     ADRIEL DIEGO - PÁGINA PRINCIPAL
+     Sitio minimalista con modal macOS
+     ========================================== -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <!-- Metadatos básicos -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Adriel Diego - Desarrollador, Creador y Soñador. Portfolio minimalista.">
     <title>Adriel Diego</title>
+    
+    <!-- Estilos con versión para cache busting -->
     <link rel="stylesheet" href="estilo.css?v=1.0.0">
+    
+    <!-- Cache control para forzar validación con servidor -->
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
 </head>
 <body class="page-transition">
+    <!-- NAVEGACIÓN PRINCIPAL -->
     <nav class="navbar">
         <div class="navbar-container">
+            <!-- Logo que enlaza a inicio -->
             <a href="index.html" class="navbar-logo">AD</a>
+            
+            <!-- Menú de navegación -->
             <ul class="nav-menu">
                 <li><a href="index.html" class="nav-item">Inicio</a></li>
-                <li><a href="quien-soy.html" class="nav-item">Quién soy</a></li>
+                <!-- "Quién soy" abre modal en lugar de navegar -->
+                <li><a href="quien-soy.html" id="quien-soy-link" class="nav-item">Quién soy</a></li>
                 <li><a href="que-hago.html" class="nav-item">Qué hago</a></li>
                 <li><a href="contacto.html" class="nav-item">Contacto</a></li>
             </ul>
         </div>
     </nav>
     
+    <!-- ENCABEZADO CON BANNER -->
     <header>
         <div class="banner">
             <h1>Adriel Diego</h1>
@@ -29,14 +45,18 @@
         </div>
     </header>
     
+    <!-- SECCIÓN DE BIENVENIDA -->
     <div class="welcome-section">
         <p>Bienvenido a mi sitio</p>
     </div>
     
-    <!-- Modal Quién Soy -->
+    <!-- MODAL "QUIÉN SOY" - Estilo macOS -->
     <div id="quien-soy-modal" class="modal-overlay">
+        <!-- Ventana modal con barra de título tipo macOS -->
         <div id="quien-soy-window" class="macos-window">
+            <!-- Barra de título arrastrable -->
             <div class="window-titlebar">
+                <!-- Botones de control rojo/amarillo/verde (macOS style) -->
                 <div class="window-buttons">
                     <button class="window-btn close-btn" id="close-btn"></button>
                     <button class="window-btn minimize-btn"></button>
@@ -44,6 +64,8 @@
                 </div>
                 <div class="window-title">Quién soy</div>
             </div>
+            
+            <!-- Contenido scrollable de la ventana -->
             <div class="window-content">
                 <p>Soy un apasionado por la tecnología y el diseño. Creo en la simplicidad y la elegancia del minimalismo. Mi objetivo es crear experiencias digitales limpias y funcionales.</p>
                 <p>Desde pequeño, siempre me ha fascinado cómo funcionan las cosas. La programación me permitió convertir esa curiosidad en proyectos reales. Cada línea de código es una oportunidad de aprender y mejorar.</p>
@@ -52,16 +74,19 @@
         </div>
     </div>
     
+    <!-- CONTENIDO PRINCIPAL -->
     <main>
         <section id="presentacion">
             <p>Soy un desarrollador apasionado por crear experiencias digitales minimalistas y funcionales. Aquí encontrarás información sobre mí, mis proyectos y una forma de contactarme.</p>
         </section>
     </main>
     
+    <!-- PIE DE PÁGINA -->
     <footer>
         <p>&copy; 2026. Todos los derechos reservados.</p>
     </footer>
     
+    <!-- Script principal con versión para cache busting -->
     <script src="script.js?v=1.0.0"></script>
 </body>
 </html>
