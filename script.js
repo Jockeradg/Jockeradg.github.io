@@ -56,14 +56,11 @@ function shouldShowSnowflakes() {
 
 /**
  * Crea un contenedor de copos de nieve y los anima cayendo
- * Persiste entre navegaciones usando sessionStorage
+ * Se recrea en cada página y evita duplicados en la misma carga
  */
 function initSnowflakes() {
     // Solo crear si es la temporada adecuada
     if (!shouldShowSnowflakes()) return;
-    
-    // Verificar si ya se inicializó en esta sesión
-    if (sessionStorage.getItem('snowflakes-initialized')) return;
     
     // Crear contenedor de copos si no existe
     if (document.getElementById('snowflakes-container')) return;
@@ -71,9 +68,6 @@ function initSnowflakes() {
     const snowContainer = document.createElement('div');
     snowContainer.id = 'snowflakes-container';
     document.body.appendChild(snowContainer);
-    
-    // Marcar como inicializado en esta sesión
-    sessionStorage.setItem('snowflakes-initialized', 'true');
     
     /**
      * Crea un copo de nieve individual
