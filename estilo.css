@@ -543,17 +543,52 @@ footer p {
    ======================================== */
 
 /**
- * Gorro de Navidad en la esquina superior izquierda del modal
+ * Gorro de Navidad en la esquina superior derecha del modal
  * Se muestra del 1 de diciembre al 14 de enero
+ * Sobresale por la esquina tapándola parcialmente
  */
 .christmas-hat {
     position: absolute;
-    top: -15px;
-    left: -10px;
-    font-size: 2.5rem;
+    top: -20px;
+    right: -20px;
+    width: 60px;
+    height: 50px;
     z-index: 10;
     animation: wobble 2s ease-in-out infinite;
     user-select: none;
+    pointer-events: none;
+}
+
+/**
+ * Gorro rojo triangular de Navidad usando CSS
+ * Crea un triángulo rojo con el borde inferior blanco (para el pompón y borde)
+ */
+.christmas-hat::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 45px solid #c41e3a;
+    top: 0;
+    left: 10px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+/**
+ * Pompón blanco al final del gorro
+ */
+.christmas-hat::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background-color: #fff;
+    border-radius: 50%;
+    top: 28px;
+    left: 22px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 /**
@@ -561,16 +596,17 @@ footer p {
  */
 @keyframes wobble {
     0%, 100% {
-        transform: rotate(0deg) translateX(0);
+        transform: rotate(0deg) translateY(0);
     }
     25% {
-        transform: rotate(-5deg) translateX(-5px);
+        transform: rotate(-8deg) translateY(-3px);
     }
     50% {
-        transform: rotate(5deg) translateX(5px);
+        transform: rotate(8deg) translateY(3px);
     }
     75% {
-        transform: rotate(-5deg) translateX(-5px);
+        transform: rotate(-8deg) translateY(-3px);
     }
 }
+
 

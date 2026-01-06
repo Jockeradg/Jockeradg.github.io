@@ -164,7 +164,6 @@ function addChristmasHatToModal() {
     const hat = document.createElement('div');
     hat.id = 'christmas-hat';
     hat.className = 'christmas-hat';
-    hat.textContent = '🎅';
     
     macosWindow.appendChild(hat);
 }
