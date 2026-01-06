@@ -553,6 +553,7 @@ if (contactForm) {
 /**
  * Carga los proyectos desde projects.json y los renderiza en la página
  * Solo se ejecuta si existe el contenedor de proyectos
+ * Si no hay proyectos publicados, oculta la sección
  */
 async function loadProjects() {
     const projectsContainer = document.getElementById('projects-container');
@@ -577,6 +578,20 @@ async function loadProjects() {
         
         // Filtrar solo proyectos publicados (published === true)
         const publishedProjects = projects.filter(project => project.published !== false);
+        
+        // Si no hay proyectos publicados, ocultar la sección completa
+        const proyectosSection = document.getElementById('proyectos');
+        if (publishedProjects.length === 0) {
+            if (proyectosSection) {
+                proyectosSection.style.display = 'none';
+            }
+            return;
+        }
+        
+        // Si hay proyectos, asegurar que la sección esté visible
+        if (proyectosSection) {
+            proyectosSection.style.display = 'block';
+        }
         
         // Crear una tarjeta para cada proyecto publicado
         publishedProjects.forEach(project => {
