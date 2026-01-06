@@ -520,10 +520,10 @@ if (contactForm) {
                 // Generar nuevo CAPTCHA
                 generateCaptcha();
                 
-                // Redirigir a la página de contacto después de 3 segundos
+                // Remover mensaje después de 5 segundos
                 setTimeout(() => {
-                    window.location.href = 'contacto.html';
-                }, 3000);
+                    formMessage.style.display = 'none';
+                }, 5000);
             } else {
                 // Intentar leer mensaje de error de Formspree
                 const errorData = await response.json().catch(() => ({}));
