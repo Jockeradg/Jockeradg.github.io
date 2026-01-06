@@ -14,7 +14,7 @@
       "description": "Sitio web personal con diseño limpio y moderno",
       "image": "/images/projects/placeholder.svg",
       "content": "/projects/content/proyecto-1.html",
-      "published": true
+      "published": false
     },
     {
       "id": "proyecto-2",
