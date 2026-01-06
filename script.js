@@ -113,13 +113,9 @@ function initSnowflakes() {
 
 // Inicializar copos de nieve cuando cargue el DOM
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-        initSnowflakes();
-        addChristmasHatToModal();
-    });
+    document.addEventListener('DOMContentLoaded', initSnowflakes);
 } else {
     initSnowflakes();
-    addChristmasHatToModal();
 }
 
 /* ========================================
