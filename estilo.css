@@ -65,7 +65,13 @@ body.fade-out {
 }
 
 .navbar-logo {
-    display: none;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #000;
+    letter-spacing: 0.5px;
+    margin-right: auto;
+    cursor: default;
+    user-select: none;
 }
 
 .nav-menu {
