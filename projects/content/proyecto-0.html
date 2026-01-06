@@ -6,6 +6,13 @@ Cómo usar esta plantilla:
 3) Reemplaza textos e imágenes a continuación.
 -->
 
+<!-- Prevenir acceso directo -->
+<script>
+if (window.location.href.includes('/projects/content/proyecto-0.html')) {
+  window.location.replace('/404.html');
+}
+</script>
+
 <section>
   <h2>Título de Sección</h2>
   <p>Breve introducción al proyecto. Explica el objetivo principal y el contexto.</p>
