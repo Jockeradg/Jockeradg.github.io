@@ -359,17 +359,27 @@ if (contactForm) {
         submitBtn.style.opacity = '0.5';
         submitBtn.textContent = 'Enviando...';
         
-        // Crear FormData con los datos del formulario
-        const formData = new FormData(contactForm);
+        // Obtener valores del formulario
+        const nombre = contactForm.nombre.value;
+        const email = contactForm.email.value;
+        const mensaje = contactForm.mensaje.value;
+        
+        // Crear JSON con los datos (Formspree soporta JSON)
+        const formData = {
+            nombre: nombre,
+            email: email,
+            mensaje: mensaje
+        };
         
         try {
-            // Enviar a Formspree
+            // Enviar a Formspree con JSON
             const response = await fetch(contactForm.action, {
                 method: 'POST',
-                body: formData,
                 headers: {
-                    'Accept': 'application/json'
-                }
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
             });
             
             if (response.ok) {
@@ -389,13 +399,16 @@ if (contactForm) {
                     formMessage.style.display = 'none';
                 }, 5000);
             } else {
-                throw new Error('Error al enviar');
+                // Intentar leer mensaje de error de Formspree
+                const errorData = await response.json().catch(() => ({}));
+                throw new Error(errorData.error || 'Error al enviar');
             }
         } catch (error) {
             // Mensaje de error
             formMessage.style.display = 'block';
             formMessage.style.color = '#ff3b30';
             formMessage.textContent = 'Hubo un error al enviar el mensaje. Por favor intenta de nuevo.';
+            console.error('Error de formulario:', error);
             
             // Generar nuevo CAPTCHA en caso de error
             generateCaptcha();
