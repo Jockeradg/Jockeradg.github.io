@@ -127,6 +127,7 @@ header, footer {
 
 .banner {
     text-align: center;
+    cursor: default;
 }
 
 .banner h1 {

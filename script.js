@@ -42,12 +42,14 @@ const quienSoyModal = document.getElementById('quien-soy-modal');
 const closeBtn = document.getElementById('close-btn');
 const windowTitlebar = document.querySelector('.window-titlebar');
 const macosWindow = document.getElementById('quien-soy-window');
-const banner = document.querySelector('.banner');
 
 // Variables de arrastre para la ventana modal
 let isDragging = false;
 let dragOffsetX = 0;
 let dragOffsetY = 0;
+
+// Variable para guardar la posición del botón que abre el modal
+let originButtonPosition = { x: 0, y: 0 };
 
 /* ========================================
    MODAL - ABRIR/CERRAR
@@ -63,26 +65,20 @@ quienSoyLink?.addEventListener('click', (e) => {
     const rect = e.target.getBoundingClientRect();
     const originX = rect.left + rect.width / 2;
     const originY = rect.top;
+    // Guardar la posición del botón para cerrar hacia él
+    originButtonPosition = { x: originX, y: originY };
     // Establecer transform-origin en la ventana modal
     macosWindow.style.transformOrigin = `${originX}px ${originY}px`;
     quienSoyModal.classList.add('active');
 });
 
-/**
- * Abre el modal al hacer clic en el banner (imagen/área principal)
- * Anima desde el centro del banner
- */
-banner?.addEventListener('click', () => {
-    // Animar desde el centro del viewport
-    macosWindow.style.transformOrigin = 'center center';
-    quienSoyModal.classList.add('active');
-});
 
 /**
  * Cierra el modal al hacer clic en el botón rojo (close-btn)
- * Añade animación de cierre antes de remover la clase active
+ * Anima de regreso hacia el botón de origen
  */
 closeBtn?.addEventListener('click', () => {
+    macosWindow.style.transformOrigin = `${originButtonPosition.x}px ${originButtonPosition.y}px`;
     macosWindow.style.animation = 'popFromOrigin 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) reverse';
     setTimeout(() => {
         quienSoyModal.classList.remove('active');
@@ -92,10 +88,11 @@ closeBtn?.addEventListener('click', () => {
 
 /**
  * Cierra el modal al hacer clic en el overlay (área oscura detrás)
- * Solo se cierra si se hace clic directamente en el overlay
+ * Anima de regreso hacia el botón de origen
  */
 quienSoyModal?.addEventListener('click', (e) => {
     if (e.target === quienSoyModal) {
+        macosWindow.style.transformOrigin = `${originButtonPosition.x}px ${originButtonPosition.y}px`;
         macosWindow.style.animation = 'popFromOrigin 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) reverse';
         setTimeout(() => {
             quienSoyModal.classList.remove('active');
@@ -199,6 +196,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const rect = e.target.getBoundingClientRect();
                 const originX = rect.left + rect.width / 2;
                 const originY = rect.top;
+                // Guardar la posición del botón de origen
+                originButtonPosition = { x: originX, y: originY };
                 macosWindow.style.transformOrigin = `${originX}px ${originY}px`;
                 quienSoyModal.classList.add('active');
             });
@@ -215,6 +214,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const rect = e.target.getBoundingClientRect();
         const originX = rect.left + rect.width / 2;
         const originY = rect.top;
+        // Guardar la posición del botón de origen
+        originButtonPosition = { x: originX, y: originY };
         macosWindow.style.transformOrigin = `${originX}px ${originY}px`;
         quienSoyModal.classList.add('active');
     });
@@ -225,6 +226,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const rect = e.target.getBoundingClientRect();
         const originX = rect.left + rect.width / 2;
         const originY = rect.top;
+        // Guardar la posición del botón de origen
+        originButtonPosition = { x: originX, y: originY };
         macosWindow.style.transformOrigin = `${originX}px ${originY}px`;
         quienSoyModal.classList.add('active');
     });
