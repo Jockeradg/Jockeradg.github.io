@@ -59,22 +59,13 @@ body.fade-out {
     max-width: 800px;
     margin: 0 auto;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     padding: 1rem;
 }
 
 .navbar-logo {
-    font-weight: 700;
-    font-size: 1.2rem;
-    color: #000;
-    text-decoration: none;
-    letter-spacing: 0.1rem;
-    transition: opacity 0.3s ease;
-}
-
-.navbar-logo:hover {
-    opacity: 0.7;
+    display: none;
 }
 
 .nav-menu {
@@ -305,15 +296,16 @@ button:hover {
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.3);
     z-index: 2000;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 1rem;
 }
 
 .modal-overlay.active {
     display: flex;
 }
 
-/* Ventana macOS - Estilo */
+/* Ventana macOS - Estilo con animación de origen */
 .macos-window {
     background-color: #fff;
     border-radius: 12px;
@@ -325,6 +317,20 @@ button:hover {
     max-width: 90vw;
     position: relative;
     touch-action: none;
+    animation: popFromOrigin 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transform-origin: top right;
+}
+
+/* Animación de origen desde el botón (como en macOS) */
+@keyframes popFromOrigin {
+    from {
+        opacity: 0;
+        transform: scale(0.1) translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
 }
 
 /* Barra de título de la ventana */
@@ -428,13 +434,23 @@ button:hover {
 
 /* Responsive - Modal */
 @media (max-width: 768px) {
+    .modal-overlay {
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding: 1rem 0.5rem;
+    }
     .macos-window { width: 95vw; }
     .window-content { padding: 16px 20px; max-height: 60vh; font-size: 0.85rem; }
     .window-title { font-size: 0.8rem; }
 }
 
 @media (max-width: 480px) {
-    .macos-window { width: 98vw; border-radius: 10px; }
+    .modal-overlay {
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding: 0.75rem;
+    }
+    .macos-window { width: 98vw; border-radius: 10px; margin-top: 0.5rem; }
     .window-titlebar { padding: 10px 12px; }
     .window-buttons { min-width: 50px; }
     .window-btn { width: 11px; height: 11px; }

@@ -70,9 +70,14 @@ banner?.addEventListener('click', () => {
 
 /**
  * Cierra el modal al hacer clic en el botón rojo (close-btn)
+ * Añade animación de cierre antes de remover la clase active
  */
 closeBtn?.addEventListener('click', () => {
-    quienSoyModal.classList.remove('active');
+    macosWindow.style.animation = 'popFromOrigin 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) reverse';
+    setTimeout(() => {
+        quienSoyModal.classList.remove('active');
+        macosWindow.style.animation = 'popFromOrigin 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)';
+    }, 300);
 });
 
 /**
@@ -81,7 +86,11 @@ closeBtn?.addEventListener('click', () => {
  */
 quienSoyModal?.addEventListener('click', (e) => {
     if (e.target === quienSoyModal) {
-        quienSoyModal.classList.remove('active');
+        macosWindow.style.animation = 'popFromOrigin 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) reverse';
+        setTimeout(() => {
+            quienSoyModal.classList.remove('active');
+            macosWindow.style.animation = 'popFromOrigin 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)';
+        }, 300);
     }
 });
 
