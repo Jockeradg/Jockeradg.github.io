@@ -1,10 +1,19 @@
 {
   "projects": [
     {
+      "id": "proyecto-0",
+      "title": "Plantilla de Proyecto",
+      "description": "Usa esta plantilla como base; duplica y edita.",
+      "image": "/images/projects/placeholder.svg",
+      "content": "/projects/content/proyecto-0.html",
+      "published": false
+    },
+    {
       "id": "proyecto-1",
       "title": "Portfolio Minimalista",
       "description": "Sitio web personal con diseño limpio y moderno",
       "image": "/images/projects/placeholder.svg",
+      "content": "/projects/content/proyecto-1.html",
       "published": true
     },
     {

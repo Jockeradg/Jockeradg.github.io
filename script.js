@@ -640,6 +640,7 @@ async function loadProjectDetail() {
     const titleEl = document.getElementById('project-title');
     const descEl = document.getElementById('project-description');
     const heroEl = document.getElementById('project-hero');
+    const bodyEl = document.getElementById('project-body-content');
     
     // Si no estamos en una página de detalle, salir
     if (!titleEl || !descEl || !heroEl) return;
@@ -664,10 +665,26 @@ async function loadProjectDetail() {
             return;
         }
         
-        // Rellenar contenido
+        // Rellenar contenido principal
         titleEl.textContent = project.title;
         descEl.textContent = project.description;
         heroEl.style.backgroundImage = `url('${project.image}')`;
+
+        // Cargar contenido rico (HTML) si existe
+        if (bodyEl) {
+            const contentPath = project.content || `/projects/content/${project.id}.html`;
+            try {
+                const contentResp = await fetch(contentPath + `?v=1.0.0`);
+                if (contentResp.ok) {
+                    const html = await contentResp.text();
+                    bodyEl.innerHTML = html;
+                } else {
+                    bodyEl.textContent = '';
+                }
+            } catch (e) {
+                bodyEl.textContent = '';
+            }
+        }
     } catch (err) {
         titleEl.textContent = 'Error al cargar el proyecto';
         descEl.textContent = 'Intenta recargar la página más tarde.';

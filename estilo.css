@@ -797,4 +797,27 @@ footer p {
     opacity: 0.9;
 }
 
+/* Contenido rico del proyecto */
+.project-rich-content {
+    margin-top: 1.5rem;
+}
+
+.project-rich-content h2,
+.project-rich-content h3,
+.project-rich-content h4 {
+    margin: 1.5rem 0 0.75rem;
+}
+
+.project-rich-content p {
+    margin: 0.75rem 0;
+}
+
+.project-rich-content img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1rem auto;
+    border-radius: 10px;
+}
+
 
