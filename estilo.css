@@ -18,29 +18,6 @@ body {
     overflow-x: hidden;
 }
 
-/* ANIMACIONES DE TRANSICIÓN - DESHABILITADAS */
-/* Las siguientes animaciones están comentadas para evitar transiciones entre páginas */
-
-/*
-body.page-transition {
-    animation: smoothSlideDown 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-body.fade-out {
-    animation: smoothSlideUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-}
-
-@keyframes smoothSlideDown {
-    from { transform: translateY(-100%); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-}
-
-@keyframes smoothSlideUp {
-    from { transform: translateY(0); opacity: 1; }
-    to { transform: translateY(-100%); opacity: 0; }
-}
-*/
-
 /* ========================================
    NAVEGACIÓN
    ======================================== */
@@ -48,11 +25,10 @@ body.fade-out {
 .navbar {
     position: sticky;
     top: 0;
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.95);
     border-bottom: 1px solid #eee;
     z-index: 1000;
     backdrop-filter: blur(10px);
-    background-color: rgba(255, 255, 255, 0.95);
 }
 
 .navbar-container {
@@ -362,7 +338,6 @@ button:disabled {
     border-bottom: 1px solid #e0e0e0;
     cursor: grab;
     user-select: none;
-    -webkit-user-select: none;
 }
 
 .window-titlebar:active {
@@ -541,77 +516,6 @@ footer p {
     100% {
         transform: translateY(100vh) translateX(0);
         opacity: 0;
-    }
-}
-
-/* ========================================
-   GORRO DE NAVIDAD - MODAL
-   ======================================== */
-
-/**
- * Gorro de Navidad en la esquina superior derecha del modal
- * Se muestra del 1 de diciembre al 14 de enero
- * Sobresale por la esquina tapándola parcialmente
- */
-.christmas-hat {
-    position: absolute;
-    top: -20px;
-    right: -20px;
-    width: 60px;
-    height: 50px;
-    z-index: 10;
-    animation: wobble 2s ease-in-out infinite;
-    user-select: none;
-    pointer-events: none;
-}
-
-/**
- * Gorro rojo triangular de Navidad usando CSS
- * Crea un triángulo rojo con el borde inferior blanco (para el pompón y borde)
- */
-.christmas-hat::before {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 0;
-    border-left: 20px solid transparent;
-    border-right: 20px solid transparent;
-    border-bottom: 45px solid #c41e3a;
-    top: 0;
-    left: 10px;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
-}
-
-/**
- * Pompón blanco al final del gorro
- */
-.christmas-hat::after {
-    content: '';
-    position: absolute;
-    width: 16px;
-    height: 16px;
-    background-color: #fff;
-    border-radius: 50%;
-    top: 28px;
-    left: 22px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-/**
- * Animación de movimiento suave del gorro (como si estuviera bailando)
- */
-@keyframes wobble {
-    0%, 100% {
-        transform: rotate(0deg) translateY(0);
-    }
-    25% {
-        transform: rotate(-8deg) translateY(-3px);
-    }
-    50% {
-        transform: rotate(8deg) translateY(3px);
-    }
-    75% {
-        transform: rotate(-8deg) translateY(-3px);
     }
 }
 

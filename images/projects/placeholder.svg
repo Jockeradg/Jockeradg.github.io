@@ -1,31 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="1600" height="900" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Proyecto de ejemplo">
+<svg width="1600" height="900" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#0f2027"/>
       <stop offset="50%" stop-color="#203a43"/>
       <stop offset="100%" stop-color="#2c5364"/>
     </linearGradient>
-    <filter id="grain">
-      <feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="2" stitchTiles="stitch"/>
-      <feColorMatrix type="saturate" values="0"/>
-      <feBlend in2="SourceGraphic" mode="soft-light"/>
-      <feComponentTransfer>
-        <feFuncA type="table" tableValues="0 0.15" />
-      </feComponentTransfer>
-    </filter>
   </defs>
   <rect width="100%" height="100%" fill="url(#g)"/>
-  <g filter="url(#grain)" opacity="0.2">
-    <rect width="100%" height="100%" fill="#000"/>
-  </g>
-  <g fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="2">
-    <path d="M0,740 Q400,620 800,740 T1600,740"/>
-    <path d="M0,640 Q400,520 800,640 T1600,640"/>
-    <path d="M0,540 Q400,420 800,540 T1600,540"/>
-  </g>
-  <g transform="translate(800,450)" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif">
-    <text y="-10" font-size="56" fill="#ffffff" fill-opacity="0.95">Proyecto de ejemplo</text>
-    <text y="40" font-size="22" fill="#ffffff" fill-opacity="0.75">Imagen de marcador de posición</text>
-  </g>
+  <path d="M0,740Q400,620 800,740T1600,740M0,640Q400,520 800,640T1600,640M0,540Q400,420 800,540T1600,540" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="2"/>
+  <text x="800" y="440" font-family="-apple-system,sans-serif" font-size="56" fill="#fff" opacity=".95" text-anchor="middle">Proyecto de ejemplo</text>
+  <text x="800" y="480" font-family="-apple-system,sans-serif" font-size="22" fill="#fff" opacity=".75" text-anchor="middle">Imagen de marcador</text>
 </svg>

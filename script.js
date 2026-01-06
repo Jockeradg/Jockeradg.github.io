@@ -200,31 +200,21 @@ quienSoyLink?.addEventListener('click', (e) => {
 
 
 /**
- * Cierra el modal al hacer clic en el botón rojo (close-btn)
- * Anima de regreso hacia el botón de origen
+ * Función auxiliar para cerrar el modal con animación
  */
-closeBtn?.addEventListener('click', () => {
+function closeModal() {
+    if (!macosWindow || !quienSoyModal) return;
     macosWindow.style.transformOrigin = `${originButtonPosition.x}px ${originButtonPosition.y}px`;
     macosWindow.style.animation = 'popFromOrigin 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) reverse';
     setTimeout(() => {
         quienSoyModal.classList.remove('active');
         macosWindow.style.animation = 'popFromOrigin 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)';
     }, 300);
-});
+}
 
-/**
- * Cierra el modal al hacer clic en el overlay (área oscura detrás)
- * Anima de regreso hacia el botón de origen
- */
+closeBtn?.addEventListener('click', closeModal);
 quienSoyModal?.addEventListener('click', (e) => {
-    if (e.target === quienSoyModal) {
-        macosWindow.style.transformOrigin = `${originButtonPosition.x}px ${originButtonPosition.y}px`;
-        macosWindow.style.animation = 'popFromOrigin 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) reverse';
-        setTimeout(() => {
-            quienSoyModal.classList.remove('active');
-            macosWindow.style.animation = 'popFromOrigin 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)';
-        }, 300);
-    }
+    if (e.target === quienSoyModal) closeModal();
 });
 
 /* ========================================
@@ -305,58 +295,32 @@ document.addEventListener('DOMContentLoaded', () => {
     // Obtener la página actual del pathname
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
     
-    // Marcar el enlace de navegación actual como activo
+    // Función auxiliar para abrir modal desde cualquier enlace
+    function openModal(e) {
+        e.preventDefault();
+        if (!macosWindow || !quienSoyModal) return;
+        const rect = e.target.getBoundingClientRect();
+        const originX = rect.left + rect.width / 2;
+        const originY = rect.top;
+        originButtonPosition = { x: originX, y: originY };
+        macosWindow.style.transformOrigin = `${originX}px ${originY}px`;
+        quienSoyModal.classList.add('active');
+    }
+    
+    // Marcar enlace activo y configurar modal
     document.querySelectorAll('.nav-item').forEach(link => {
         const href = link.getAttribute('href');
-        
-        // Comparar con la página actual
         if (href === currentPage || (currentPage === '' && href === 'index.html')) {
             link.classList.add('active');
         }
-        
-        // Configurar "Quién soy" en navbar para abrir modal en lugar de navegar
         if (href === 'quien-soy.html') {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                // Obtener posición del botón para animación de origen
-                const rect = e.target.getBoundingClientRect();
-                const originX = rect.left + rect.width / 2;
-                const originY = rect.top;
-                // Guardar la posición del botón de origen
-                originButtonPosition = { x: originX, y: originY };
-                macosWindow.style.transformOrigin = `${originX}px ${originY}px`;
-                quienSoyModal.classList.add('active');
-            });
+            link.addEventListener('click', openModal);
         }
     });
     
-    // Configurar botones especiales en página 404
-    const errorQuienSoyLink = document.getElementById('error-quien-soy');
-    const navbarQuienSoy = document.getElementById('navbar-quien-soy');
-    
-    // Abrir modal desde botón de "Quién soy" en error 404
-    errorQuienSoyLink?.addEventListener('click', (e) => {
-        e.preventDefault();
-        const rect = e.target.getBoundingClientRect();
-        const originX = rect.left + rect.width / 2;
-        const originY = rect.top;
-        // Guardar la posición del botón de origen
-        originButtonPosition = { x: originX, y: originY };
-        macosWindow.style.transformOrigin = `${originX}px ${originY}px`;
-        quienSoyModal.classList.add('active');
-    });
-    
-    // Abrir modal desde enlace de navbar específico
-    navbarQuienSoy?.addEventListener('click', (e) => {
-        e.preventDefault();
-        const rect = e.target.getBoundingClientRect();
-        const originX = rect.left + rect.width / 2;
-        const originY = rect.top;
-        // Guardar la posición del botón de origen
-        originButtonPosition = { x: originX, y: originY };
-        macosWindow.style.transformOrigin = `${originX}px ${originY}px`;
-        quienSoyModal.classList.add('active');
-    });
+    // Botones especiales 404
+    document.getElementById('error-quien-soy')?.addEventListener('click', openModal);
+    document.getElementById('navbar-quien-soy')?.addEventListener('click', openModal);
     
     /* ========================================
        NAVEGACIÓN DE PÁGINAS
@@ -370,45 +334,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Sin animaciones de transición
 });
 
-/* ========================================
-   SEGURIDAD (Opcional - Deshabilitar DevTools)
-   ======================================== */
 
-/**
- * Desabilitar clic derecho (menú contextual)
- * Útil para proteger contenido pero puede afectar UX
- */
-document.addEventListener('contextmenu', (e) => {
-    e.preventDefault();
-    return false;
-});
-
-/**
- * Detectar y deshabilitar teclas de DevTools
- * F12, Ctrl+Shift+I, Ctrl+Shift+J, etc.
- */
-document.addEventListener('keydown', (e) => {
-    // F12 - DevTools
-    if (e.key === 'F12') {
-        e.preventDefault();
-        return false;
-    }
-    // Ctrl+Shift+I - Inspector
-    if (e.ctrlKey && e.shiftKey && e.key === 'I') {
-        e.preventDefault();
-        return false;
-    }
-    // Ctrl+Shift+J - Consola
-    if (e.ctrlKey && e.shiftKey && e.key === 'J') {
-        e.preventDefault();
-        return false;
-    }
-    // Ctrl+Shift+C - Selector
-    if (e.ctrlKey && e.shiftKey && e.key === 'C') {
-        e.preventDefault();
-        return false;
-    }
-});
 
 /* ========================================
    CAPTCHA MATEMÁTICO
