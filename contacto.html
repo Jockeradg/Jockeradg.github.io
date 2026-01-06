@@ -18,6 +18,9 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
+    
+    <!-- Google reCAPTCHA -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
     <!-- NAVEGACIÓN PRINCIPAL -->
@@ -64,12 +67,17 @@
         <section id="contacto">
             <p>¿Tienes una pregunta o propuesta? Me encantaría saber de ti. Rellena el formulario y te responderé lo antes posible.</p>
             
-            <!-- Formulario de contacto con validación HTML5 -->
-            <form>
-                <input type="text" placeholder="Tu nombre" required>
-                <input type="email" placeholder="Tu correo" required>
-                <textarea placeholder="Tu mensaje" rows="6" required></textarea>
-                <button type="submit">Enviar mensaje</button>
+            <!-- Formulario de contacto funcional con validación -->
+            <form id="contact-form" action="https://formspree.io/f/mbdlveov" method="POST">
+                <input type="text" name="nombre" placeholder="Tu nombre" required>
+                <input type="email" name="email" placeholder="Tu correo" required>
+                <textarea name="mensaje" placeholder="Tu mensaje" rows="6" required></textarea>
+                
+                <!-- reCAPTCHA v2 -->
+                <div class="g-recaptcha" data-sitekey="6LeYyN0pAAAAAInJ_K8UqLqkbmkT3v7kMBF1iJtx" style="margin: 1rem 0; display: flex; justify-content: center;"></div>
+                
+                <button type="submit" id="submit-btn">Enviar mensaje</button>
+                <p id="form-message" style="display:none; margin-top: 1rem; text-align: center;"></p>
             </form>
         </section>
     </main>

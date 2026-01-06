@@ -283,3 +283,82 @@ document.addEventListener('keydown', (e) => {
         return false;
     }
 });
+
+/* ========================================
+   FORMULARIO DE CONTACTO
+   ======================================== */
+
+/**
+ * Maneja el envío del formulario de contacto
+ * Usa Formspree como servicio backend para recibir emails
+ */
+const contactForm = document.getElementById('contact-form');
+const submitBtn = document.getElementById('submit-btn');
+const formMessage = document.getElementById('form-message');
+
+if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        // Verificar que reCAPTCHA esté completado
+        const recaptchaResponse = grecaptcha.getResponse();
+        if (!recaptchaResponse) {
+            formMessage.style.display = 'block';
+            formMessage.style.color = '#ff3b30';
+            formMessage.textContent = 'Por favor completa el reCAPTCHA antes de enviar.';
+            return;
+        }
+        
+        // Deshabilitar botón mientras se envía
+        submitBtn.disabled = true;
+        submitBtn.style.opacity = '0.5';
+        submitBtn.textContent = 'Enviando...';
+        
+        // Crear FormData con los datos del formulario
+        const formData = new FormData(contactForm);
+        
+        try {
+            // Enviar a Formspree
+            const response = await fetch(contactForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            
+            if (response.ok) {
+                // Mensaje de éxito
+                formMessage.style.display = 'block';
+                formMessage.style.color = '#27c93f';
+                formMessage.textContent = '¡Mensaje enviado correctamente! Te responderé pronto.';
+                
+                // Limpiar formulario
+                contactForm.reset();
+                
+                // Resetear reCAPTCHA
+                grecaptcha.reset();
+                
+                // Remover mensaje después de 5 segundos
+                setTimeout(() => {
+                    formMessage.style.display = 'none';
+                }, 5000);
+            } else {
+                throw new Error('Error al enviar');
+            }
+        } catch (error) {
+            // Mensaje de error
+            formMessage.style.display = 'block';
+            formMessage.style.color = '#ff3b30';
+            formMessage.textContent = 'Hubo un error al enviar el mensaje. Por favor intenta de nuevo.';
+            
+            // Resetear reCAPTCHA en caso de error
+            grecaptcha.reset();
+        } finally {
+            // Restaurar botón
+            submitBtn.disabled = false;
+            submitBtn.style.opacity = '1';
+            submitBtn.textContent = 'Enviar mensaje';
+        }
+    });
+}

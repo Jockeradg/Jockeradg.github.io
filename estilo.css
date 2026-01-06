@@ -278,6 +278,18 @@ button:hover {
     opacity: 0.9;
 }
 
+button:disabled {
+    cursor: not-allowed;
+}
+
+/* Mensajes del formulario */
+#form-message {
+    padding: 0.75rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
 /* Responsive - Formularios */
 @media (max-width: 480px) {
     input, textarea { padding: 0.75rem; font-size: 1rem; }
