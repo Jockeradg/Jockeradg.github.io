@@ -285,6 +285,49 @@ document.addEventListener('keydown', (e) => {
 });
 
 /* ========================================
+   CAPTCHA MATEMÁTICO
+   ======================================== */
+
+/**
+ * Sistema de CAPTCHA matemático simple
+ * Genera preguntas de suma básicas para verificar que es un humano
+ */
+
+let captchaCorrectAnswer = 0;
+
+/**
+ * Genera una pregunta matemática aleatoria
+ */
+function generateCaptcha() {
+    const num1 = Math.floor(Math.random() * 10); // 0-9
+    const num2 = Math.floor(Math.random() * 10); // 0-9
+    captchaCorrectAnswer = num1 + num2;
+    
+    const questionElement = document.getElementById('captcha-question');
+    const answerInput = document.getElementById('captcha-answer');
+    
+    if (questionElement && answerInput) {
+        questionElement.textContent = `Resuelve: ${num1} + ${num2} = ?`;
+        answerInput.value = '';
+        answerInput.focus();
+    }
+}
+
+// Generar CAPTCHA al cargar la página
+document.addEventListener('DOMContentLoaded', () => {
+    generateCaptcha();
+});
+
+// Botón para generar nuevo CAPTCHA
+const captchaRefresh = document.getElementById('captcha-refresh');
+if (captchaRefresh) {
+    captchaRefresh.addEventListener('click', (e) => {
+        e.preventDefault();
+        generateCaptcha();
+    });
+}
+
+/* ========================================
    FORMULARIO DE CONTACTO
    ======================================== */
 
@@ -295,17 +338,19 @@ document.addEventListener('keydown', (e) => {
 const contactForm = document.getElementById('contact-form');
 const submitBtn = document.getElementById('submit-btn');
 const formMessage = document.getElementById('form-message');
+const captchaInput = document.getElementById('captcha-answer');
 
 if (contactForm) {
     contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         
-        // Verificar que reCAPTCHA esté completado
-        const recaptchaResponse = grecaptcha.getResponse();
-        if (!recaptchaResponse) {
+        // Verificar que el CAPTCHA esté correcto
+        const userAnswer = parseInt(captchaInput.value);
+        if (userAnswer !== captchaCorrectAnswer) {
             formMessage.style.display = 'block';
             formMessage.style.color = '#ff3b30';
-            formMessage.textContent = 'Por favor completa el reCAPTCHA antes de enviar.';
+            formMessage.textContent = 'La respuesta del CAPTCHA es incorrecta. Por favor intenta de nuevo.';
+            generateCaptcha(); // Generar nuevo CAPTCHA
             return;
         }
         
@@ -336,8 +381,8 @@ if (contactForm) {
                 // Limpiar formulario
                 contactForm.reset();
                 
-                // Resetear reCAPTCHA
-                grecaptcha.reset();
+                // Generar nuevo CAPTCHA
+                generateCaptcha();
                 
                 // Remover mensaje después de 5 segundos
                 setTimeout(() => {
@@ -352,8 +397,8 @@ if (contactForm) {
             formMessage.style.color = '#ff3b30';
             formMessage.textContent = 'Hubo un error al enviar el mensaje. Por favor intenta de nuevo.';
             
-            // Resetear reCAPTCHA en caso de error
-            grecaptcha.reset();
+            // Generar nuevo CAPTCHA en caso de error
+            generateCaptcha();
         } finally {
             // Restaurar botón
             submitBtn.disabled = false;
