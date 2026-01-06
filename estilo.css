@@ -484,3 +484,57 @@ footer {
 footer p {
     margin: 0;
 }
+
+/* ========================================
+   EFECTO COPOS DE NIEVE - NAVIDAD
+   ======================================== */
+
+/**
+ * Contenedor para copos de nieve - cubre toda la pantalla
+ * Permite que los copos caigan libremente sin interferir con el contenido
+ */
+#snowflakes-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+/**
+ * Estilo individual de cada copo de nieve
+ * Cae verticalmente con oscilación horizontal
+ */
+.snowflake {
+    position: absolute;
+    top: -10px;
+    color: #e8f4f8;
+    font-size: 1rem;
+    font-family: Arial, sans-serif;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+    animation: fall linear infinite;
+    user-select: none;
+    filter: drop-shadow(0 0 10px rgba(200, 220, 255, 0.5));
+}
+
+/**
+ * Animación de caída con oscilación horizontal
+ * Los copos caen verticalmente mientras oscilan de lado a lado
+ */
+@keyframes fall {
+    0% {
+        transform: translateY(-10px) translateX(0);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(50vh) translateX(80px);
+    }
+    100% {
+        transform: translateY(100vh) translateX(0);
+        opacity: 0;
+    }
+}
+

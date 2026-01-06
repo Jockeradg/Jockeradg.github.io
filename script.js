@@ -33,6 +33,91 @@ if ('serviceWorker' in navigator) {
 }
 
 /* ========================================
+   EFECTO COPOS DE NIEVE - NAVIDAD
+   ======================================== */
+
+/**
+ * Función para verificar si debe mostrar copos de nieve
+ * Se activa automáticamente el 1 de diciembre y se desactiva el 15 de enero
+ * @returns {boolean} true si debe mostrar copos de nieve
+ */
+function shouldShowSnowflakes() {
+    const today = new Date();
+    const month = today.getMonth(); // 0-11 (0 = enero, 11 = diciembre)
+    const day = today.getDate(); // 1-31
+    
+    // Mostrar desde 1 de diciembre hasta 14 de enero (inclusive)
+    // Diciembre es mes 11, Enero es mes 0
+    const isDecember = month === 11 && day >= 1;
+    const isJanuary = month === 0 && day < 15;
+    
+    return isDecember || isJanuary;
+}
+
+/**
+ * Crea un contenedor de copos de nieve y los anima cayendo
+ */
+function initSnowflakes() {
+    // Solo crear si es la temporada adecuada
+    if (!shouldShowSnowflakes()) return;
+    
+    // Crear contenedor de copos si no existe
+    if (document.getElementById('snowflakes-container')) return;
+    
+    const snowContainer = document.createElement('div');
+    snowContainer.id = 'snowflakes-container';
+    document.body.appendChild(snowContainer);
+    
+    /**
+     * Crea un copo de nieve individual
+     */
+    function createSnowflake() {
+        const snowflake = document.createElement('div');
+        snowflake.className = 'snowflake';
+        snowflake.textContent = '❄';
+        
+        // Posición horizontal aleatoria
+        const randomX = Math.random() * window.innerWidth;
+        snowflake.style.left = randomX + 'px';
+        
+        // Tamaño aleatorio para efecto de profundidad
+        const randomSize = Math.random() * 1 + 0.5; // 0.5 a 1.5
+        snowflake.style.fontSize = randomSize + 'rem';
+        snowflake.style.opacity = randomSize * 0.8;
+        
+        // Duración aleatoria de la caída (5-15 segundos)
+        const randomDuration = Math.random() * 10 + 5;
+        snowflake.style.animationDuration = randomDuration + 's';
+        
+        // Velocidad de oscilación horizontal aleatoria
+        const randomDelay = Math.random() * 5;
+        snowflake.style.animationDelay = randomDelay + 's';
+        
+        snowContainer.appendChild(snowflake);
+        
+        // Remover copo después de que termine la animación
+        setTimeout(() => {
+            snowflake.remove();
+        }, (randomDuration + randomDelay) * 1000);
+    }
+    
+    // Crear copos inicialmente
+    for (let i = 0; i < 50; i++) {
+        setTimeout(() => createSnowflake(), i * 100);
+    }
+    
+    // Crear nuevos copos continuamente
+    setInterval(createSnowflake, 500);
+}
+
+// Inicializar copos de nieve cuando cargue el DOM
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSnowflakes);
+} else {
+    initSnowflakes();
+}
+
+/* ========================================
    ELEMENTOS DEL DOM - CACHE GLOBAL
    ======================================== */
 
