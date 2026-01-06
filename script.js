@@ -575,8 +575,11 @@ async function loadProjects() {
         // Limpiar contenedor
         projectsContainer.innerHTML = '';
         
-        // Crear una tarjeta para cada proyecto
-        projects.forEach(project => {
+        // Filtrar solo proyectos publicados (published === true)
+        const publishedProjects = projects.filter(project => project.published !== false);
+        
+        // Crear una tarjeta para cada proyecto publicado
+        publishedProjects.forEach(project => {
             const projectCard = document.createElement('div');
             projectCard.className = 'project-card';
             projectCard.style.setProperty('--bg-image', `url('${project.image}')`);

@@ -42,13 +42,15 @@ Abre `projects/projects.json` y agrega un nuevo objeto al array `projects`:
       "id": "mi-app-web",
       "title": "Mi Aplicación Web",
       "description": "Una aplicación web interactiva con React y Node.js",
-      "image": "../images/projects/mi-app-web.jpg"
+      "image": "../images/projects/mi-app-web.jpg",
+      "published": true
     },
     {
       "id": "diseño-ux",
       "title": "Rediseño de UX",
       "description": "Nuevo diseño de interfaz para aplicación de escritorio",
-      "image": "../images/projects/diseño-ux.jpg"
+      "image": "../images/projects/diseño-ux.jpg",
+      "published": false
     }
   ]
 }
@@ -62,6 +64,19 @@ Abre `projects/projects.json` y agrega un nuevo objeto al array `projects`:
 | **title** | Título mostrado en la tarjeta | `Mi Proyecto Increíble` |
 | **description** | Descripción breve (1-2 líneas) | `Una app moderna y funcional` |
 | **image** | Ruta a la imagen desde projects.json | `../images/projects/mi-imagen.jpg` |
+| **published** | Mostrar proyecto en web (true/false) | `true` o `false` |
+
+## 📖 Campo "published"
+
+El campo `published` controla si un proyecto se muestra en la web:
+
+- `"published": true` → El proyecto se muestra en que-hago.html
+- `"published": false` → El proyecto se oculta (no aparece en la web)
+
+**Uso común:**
+- Proyectos en desarrollo: `"published": false`
+- Proyectos terminados: `"published": true`
+- Proyectos futuros: `"published": false`
 
 ## 🎯 Efectos de Interacción
 

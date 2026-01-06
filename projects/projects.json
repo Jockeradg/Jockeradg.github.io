@@ -4,25 +4,29 @@
       "id": "proyecto-1",
       "title": "Portfolio Minimalista",
       "description": "Sitio web personal con diseño limpio y moderno",
-      "image": "../images/projects/proyecto-1.jpg"
+      "image": "../images/projects/proyecto-1.jpg",
+      "published": false
     },
     {
       "id": "proyecto-2",
       "title": "Aplicación Web",
       "description": "Aplicación interactiva con funcionalidades avanzadas",
-      "image": "../images/projects/proyecto-2.jpg"
+      "image": "../images/projects/proyecto-2.jpg",
+      "published": false
     },
     {
       "id": "proyecto-3",
       "title": "Diseño de UI",
       "description": "Interfaz de usuario moderna y funcional",
-      "image": "../images/projects/proyecto-3.jpg"
+      "image": "../images/projects/proyecto-3.jpg",
+      "published": false
     },
     {
       "id": "proyecto-4",
       "title": "Proyecto Creativo",
       "description": "Experimento innovador con tecnología nueva",
-      "image": "../images/projects/proyecto-4.jpg"
+      "image": "../images/projects/proyecto-4.jpg",
+      "published": false
     }
   ]
 }
