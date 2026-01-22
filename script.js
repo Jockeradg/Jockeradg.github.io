@@ -64,9 +64,27 @@ document.addEventListener('keydown', (e) => {
  * Bloquear clic derecho (Menú contextual)
  * Previene el acceso al menú de inspeccionar elemento
  */
+// Bloquear en documento entero
 document.addEventListener('contextmenu', (e) => {
     e.preventDefault();
+    e.stopPropagation();
     return false;
+}, true); // Usar captura para interceptar antes
+
+// Bloquear también en window
+window.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    return false;
+}, true);
+
+// Bloquear en todos los elementos
+document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+    }, true);
 });
 
 /**

@@ -24,6 +24,24 @@
     <link rel="stylesheet" href="estilo.css?v=1.0.0">
 </head>
 <body>
+    <!-- PROTECCIÓN INMEDIATA CONTRA MENÚ CONTEXTUAL -->
+    <script>
+        // Bloquear contextmenu antes de cualquier otra cosa
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+        }, true);
+        document.oncontextmenu = function(e) {
+            e.preventDefault();
+            return false;
+        };
+        window.oncontextmenu = function(e) {
+            e.preventDefault();
+            return false;
+        };
+    </script>
+    
     <!-- NOTIFICACIÓN SI JAVASCRIPT ESTÁ DESHABILITADO -->
     <noscript>
         <style>
