@@ -32,7 +32,7 @@
     <meta http-equiv="Expires" content="0">
 </head>
 <body>
-    <!-- PROTECCIÓN INMEDIATA CONTRA MENÚ CONTEXTUAL -->
+    <!-- PROTECCIÓN INMEDIATA CONTRA MENÚ CONTEXTUAL Y ATAJOS -->
     <script>
         // Bloquear contextmenu antes de cualquier otra cosa
         document.addEventListener('contextmenu', function(e) {
@@ -48,6 +48,30 @@
             e.preventDefault();
             return false;
         };
+        
+        // Bloquear atajos de teclado inmediatamente
+        document.addEventListener('keydown', function(e) {
+            // Ctrl+Shift+I - Inspector
+            if (e.ctrlKey && e.shiftKey && e.key === 'I') {
+                e.preventDefault();
+                return false;
+            }
+            // Ctrl+U - Ver fuente
+            if (e.ctrlKey && e.key === 'u') {
+                e.preventDefault();
+                return false;
+            }
+            // Ctrl+Shift+U - Ver fuente Firefox
+            if (e.ctrlKey && e.shiftKey && e.key === 'u') {
+                e.preventDefault();
+                return false;
+            }
+            // F12
+            if (e.key === 'F12') {
+                e.preventDefault();
+                return false;
+            }
+        }, true);
     </script>
     
     <!-- NOTIFICACIÓN SI JAVASCRIPT ESTÁ DESHABILITADO -->

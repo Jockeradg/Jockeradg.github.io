@@ -58,6 +58,37 @@ document.addEventListener('keydown', (e) => {
         e.preventDefault();
         return false;
     }
+    
+    // Ctrl+U - Ver fuente de página (Windows/Linux)
+    if (e.ctrlKey && e.key === 'u') {
+        e.preventDefault();
+        return false;
+    }
+    
+    // Ctrl+Shift+U - Ver fuente de página (Firefox)
+    if (e.ctrlKey && e.shiftKey && e.key === 'u') {
+        e.preventDefault();
+        return false;
+    }
+    
+    // Cmd+U - Ver fuente (Mac)
+    if (e.metaKey && e.key === 'u') {
+        e.preventDefault();
+        return false;
+    }
+    
+    // Cmd+Option+J - Abre Consola (Mac)
+    if (e.metaKey && e.altKey && e.key === 'j') {
+        e.preventDefault();
+        return false;
+    }
+    
+    // Ctrl+Alt+U - Ver fuente (alternativo)
+    if (e.ctrlKey && e.altKey && e.key === 'u') {
+        e.preventDefault();
+        return false;
+    }
+}, true); // Usar captura para interceptar antes
 });
 
 /**
