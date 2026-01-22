@@ -3,6 +3,193 @@
    ========================================== */
 
 /* ========================================
+   PROTECCIÓN Y SEGURIDAD
+   ======================================== */
+
+/**
+ * BLOQUEO DE HERRAMIENTAS DE DESARROLLADOR
+ * Previene el acceso a DevTools mediante atajos de teclado
+ */
+document.addEventListener('keydown', (e) => {
+    // F12 - Abre DevTools
+    if (e.key === 'F12') {
+        e.preventDefault();
+        return false;
+    }
+    
+    // Ctrl+Shift+I - Abre Inspector (Chrome, Edge)
+    if (e.ctrlKey && e.shiftKey && e.key === 'I') {
+        e.preventDefault();
+        return false;
+    }
+    
+    // Ctrl+Shift+J - Abre Consola (Chrome, Edge)
+    if (e.ctrlKey && e.shiftKey && e.key === 'J') {
+        e.preventDefault();
+        return false;
+    }
+    
+    // Ctrl+Shift+C - Abre Elemento Inspector (Chrome, Edge)
+    if (e.ctrlKey && e.shiftKey && e.key === 'C') {
+        e.preventDefault();
+        return false;
+    }
+    
+    // Ctrl+Shift+K - Abre Consola (Firefox)
+    if (e.ctrlKey && e.shiftKey && e.key === 'K') {
+        e.preventDefault();
+        return false;
+    }
+    
+    // Ctrl+Shift+M - Abre DevTools en algunos navegadores
+    if (e.ctrlKey && e.shiftKey && e.key === 'M') {
+        e.preventDefault();
+        return false;
+    }
+    
+    // Cmd+Option+I - Abre DevTools (Safari/Mac)
+    if (e.metaKey && e.altKey && e.key === 'i') {
+        e.preventDefault();
+        return false;
+    }
+    
+    // Cmd+Option+U - Ver fuente (Mac)
+    if (e.metaKey && e.altKey && e.key === 'u') {
+        e.preventDefault();
+        return false;
+    }
+});
+
+/**
+ * Bloquear clic derecho (Menú contextual)
+ * Previene el acceso al menú de inspeccionar elemento
+ */
+document.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+    return false;
+});
+
+/**
+ * Detectar si DevTools está abierto por diferencia de tamaño
+ * Se ejecuta periódicamente para monitorear
+ */
+let isDevToolsOpen = false;
+setInterval(() => {
+    const widthThreshold = window.outerWidth - window.innerWidth > 160;
+    const heightThreshold = window.outerHeight - window.innerHeight > 160;
+    
+    if ((widthThreshold || heightThreshold) && !isDevToolsOpen) {
+        isDevToolsOpen = true;
+        console.clear();
+        // Redirigir a página de error o blank
+        // window.location.href = 'about:blank';
+    } else if (!widthThreshold && !heightThreshold && isDevToolsOpen) {
+        isDevToolsOpen = false;
+    }
+}, 500);
+
+/**
+ * Protección contra herramientas de debugging avanzadas
+ * Bloquea console methods para dificultar el debugging
+ */
+const blockConsole = () => {
+    // Mantener console.log para propósitos de desarrollo, pero advertir
+    const originalLog = console.log;
+    console.log = function(...args) {
+        if (args[0]?.includes?.('DEBUG') || args[0]?.includes?.('TEST')) {
+            return;
+        }
+        // Permitir algunos logs pero advertir
+    };
+    
+    // Bloquear acceso a propiedades sensibles
+    console.warn = () => {};
+    console.error = () => {};
+    console.info = () => {};
+    console.debug = () => {};
+};
+
+blockConsole();
+
+/**
+ * Prevenir acceso directo a métodos peligrosos
+ */
+window.eval = undefined;
+(function() {
+    const fn = Function.prototype.constructor;
+    Function.prototype.constructor = function() {
+        if (arguments[0] === 'return this') {
+            return undefined;
+        }
+        return fn.apply(this, arguments);
+    };
+})();
+
+/**
+ * Protección contra inspección de código fuente
+ * Monitorea intentos de acceso al DOM
+ */
+Object.defineProperty(window, 'devtools', {
+    get() {
+        throw new Error('No puedes acceder a esto');
+    }
+});
+
+/**
+ * Bloquear acceso a propiedades de depuración
+ */
+Object.defineProperty(window, 'chrome', {
+    get() {
+        if (window.outerHeight - window.innerHeight > 160) {
+            return undefined;
+        }
+        return window.chrome;
+    }
+});
+
+/**
+ * Desactivar eventos de arrastrar elementos (para copiar HTML)
+ */
+document.addEventListener('dragstart', (e) => {
+    e.preventDefault();
+    return false;
+});
+
+/**
+ * Desactivar selección de texto en elementos críticos
+ */
+document.addEventListener('selectstart', (e) => {
+    // Permitir selección normal pero bloquear en caso de DevTools detectado
+    if (isDevToolsOpen) {
+        e.preventDefault();
+        return false;
+    }
+});
+
+/**
+ * Protección contra console hijacking
+ * Intenta usar console devuelve una función nula
+ */
+const noop = () => {};
+console.table = noop;
+console.group = noop;
+console.groupEnd = noop;
+console.clear = noop;
+
+/**
+ * Ofuscación de datos sensibles del sitio
+ * Inyecta marcas en el HTML para advertencia
+ */
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+        // Agregar atributo de seguridad al documento
+        document.documentElement.setAttribute('data-secured', 'true');
+    });
+} else {
+    document.documentElement.setAttribute('data-secured', 'true');
+}
+
+/* ========================================
    SERVICE WORKER REGISTRATION & UPDATES
    ======================================== */
 
